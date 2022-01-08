@@ -2,6 +2,7 @@ package com.skilldistillery.mygamelist.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,6 +45,33 @@ class GameTest {
 	void test_game_title_mapping() {
 		assertNotNull(game);
 		assertEquals("Mass Effect", game.getTitle());
+	}
+	
+	@Test
+	void test_game_createdDateTime_mapping() {
+		assertNotNull(game);
+		assertEquals(1, game.getCreatedDateTime().getMonthValue());
+		assertEquals(7, game.getCreatedDateTime().getDayOfMonth());
+	}
+	
+	@Test
+	void test_game_updatedDateTime_mapping() {
+		assertNotNull(game);
+		assertEquals(1, game.getUpdateDateTime().getMonthValue());
+		assertEquals(8, game.getUpdateDateTime().getDayOfMonth());
+	}
+	
+	@Test
+	void test_game_description_mapping() {
+		assertNotNull(game);
+		assertEquals("First Mass Effect", game.getDescription());
+	}
+	
+	@Test
+	void test_game_imageURL_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getImageURL());
+		assertTrue(game.getImageURL().contains("https"));
 	}
 
 }

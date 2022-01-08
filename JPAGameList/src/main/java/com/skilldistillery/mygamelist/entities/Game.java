@@ -1,11 +1,16 @@
 package com.skilldistillery.mygamelist.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Game {
@@ -13,12 +18,26 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="image_url")
+	private String imageURL;
+	
+	@Column(name="updated_date_time")
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
+	
+    @Column(name = "created_date_time")
+	@CreationTimestamp
+	private LocalDateTime createdDateTime;
+	
+	private String description;
 	private String title;
+	
 	
 	/* ----------------------------------------------------------------------------
 		Constructors
 	---------------------------------------------------------------------------- */
 	public Game() {}
+	
 	
 	/* ----------------------------------------------------------------------------
 		Get/Set ID
@@ -40,7 +59,51 @@ public class Game {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	
+	/* ----------------------------------------------------------------------------
+		Get/Set imageURL
+	---------------------------------------------------------------------------- */
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	
+
+	/* ----------------------------------------------------------------------------
+		Get/Set updateDateTime
+	---------------------------------------------------------------------------- */
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
+	}
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set createdDateTime
+	---------------------------------------------------------------------------- */
+	public LocalDateTime getCreatedDateTime() {
+		return createdDateTime;
+	}
+	public void setCreatedDateTime(LocalDateTime createdDateTime) {
+		this.createdDateTime = createdDateTime;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set description
+	---------------------------------------------------------------------------- */
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	
 	/* ----------------------------------------------------------------------------
 		Misc
