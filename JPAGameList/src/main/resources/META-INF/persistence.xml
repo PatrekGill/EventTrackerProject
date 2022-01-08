@@ -8,6 +8,7 @@
 
 		<class>com.skilldistillery.mygamelist.entities.Game</class>
 		<class>com.skilldistillery.mygamelist.entities.Platform</class>
+		<class>com.skilldistillery.mygamelist.entities.Staff</class>
 		<class>com.skilldistillery.mygamelist.entities.User</class>
 
 		<properties>
