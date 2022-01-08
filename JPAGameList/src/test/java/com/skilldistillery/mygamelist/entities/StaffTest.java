@@ -60,14 +60,14 @@ class StaffTest {
 	}
 	
 	@Test
-	void test_game_createdDateTime_mapping() {
+	void test_staff_createdDateTime_mapping() {
 		assertNotNull(staff);
 		assertEquals(1, staff.getCreatedDateTime().getMonthValue());
 		assertEquals(7, staff.getCreatedDateTime().getDayOfMonth());
 	}
 	
 	@Test
-	void test_game_updatedDateTime_mapping() {
+	void test_staff_updatedDateTime_mapping() {
 		assertNotNull(staff);
 		assertEquals(1, staff.getUpdateDateTime().getMonthValue());
 		assertEquals(8, staff.getUpdateDateTime().getDayOfMonth());
