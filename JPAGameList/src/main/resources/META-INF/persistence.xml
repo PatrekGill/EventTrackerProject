@@ -8,6 +8,7 @@
 
 		<class>com.skilldistillery.mygamelist.entities.Company</class>
 		<class>com.skilldistillery.mygamelist.entities.Game</class>
+		<class>com.skilldistillery.mygamelist.entities.GameList</class>
 		<class>com.skilldistillery.mygamelist.entities.Platform</class>
 		<class>com.skilldistillery.mygamelist.entities.Relationship</class>
 		<class>com.skilldistillery.mygamelist.entities.Tag</class>
@@ -17,7 +18,7 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/MyGameListDB?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
+				value="jdbc:mysql://localhost:3306/mygamelistdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
 			<property name="javax.persistence.jdbc.user" value="gameuser" />
 			<property name="javax.persistence.jdbc.password"
 				value="gameuser" />
