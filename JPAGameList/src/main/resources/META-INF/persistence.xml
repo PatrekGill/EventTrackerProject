@@ -8,6 +8,7 @@
 
 		<class>com.skilldistillery.mygamelist.entities.Company</class>
 		<class>com.skilldistillery.mygamelist.entities.Game</class>
+		<class>com.skilldistillery.mygamelist.entities.GameComment</class>
 		<class>com.skilldistillery.mygamelist.entities.GameList</class>
 		<class>com.skilldistillery.mygamelist.entities.Platform</class>
 		<class>com.skilldistillery.mygamelist.entities.Relationship</class>
