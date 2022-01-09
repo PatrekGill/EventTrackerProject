@@ -39,30 +39,39 @@ class UserTest {
 		user = null;
 	}
 
+	
+	
 	@Test
-	void test_user_username_mapping() {
+	void test_User_username_mapping() {
 		assertNotNull(user);
 		assertEquals("admin",user.getUsername());
 	}
 	
 	@Test
-	void test_user_password_mapping() {
+	void test_User_password_mapping() {
 		assertNotNull(user);
 		assertEquals("admin",user.getPassword());
 	}
 	
 	@Test
-	void test_user_createdDateTime_mapping() {
+	void test_User_createdDateTime_mapping() {
 		assertNotNull(user);
 		assertEquals(1, user.getCreatedDateTime().getMonthValue());
 		assertEquals(7, user.getCreatedDateTime().getDayOfMonth());
 	}
 	
 	@Test
-	void test_staff_updatedDateTime_mapping() {
+	void test_User_updatedDateTime_mapping() {
 		assertNotNull(user);
 		assertEquals(1, user.getUpdateDateTime().getMonthValue());
 		assertEquals(8, user.getUpdateDateTime().getDayOfMonth());
 	}
-
+	
+	@Test
+	void test_User_gameLists_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getGameLists());
+		assertFalse(user.getGameLists().isEmpty());
+		assertEquals("Playing",user.getGameLists().get(0).getName());
+	}
 }

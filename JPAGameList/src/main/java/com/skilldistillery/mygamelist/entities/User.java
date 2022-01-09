@@ -1,6 +1,8 @@
 package com.skilldistillery.mygamelist.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -26,6 +29,9 @@ public class User {
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
 	
+    @OneToMany(mappedBy = "user")
+    private List<GameList> gameLists;
+    
 	private String password;
 	private String username;
 	
@@ -39,6 +45,20 @@ public class User {
 	}
 	
 
+	/* ----------------------------------------------------------------------------
+		Get/Set GameLists
+	---------------------------------------------------------------------------- */
+	public List<GameList> getGameLists() {
+		if (gameLists == null) {
+			gameLists = new ArrayList<GameList>();
+		}
+		return gameLists;
+	}
+	public void setGameLists(List<GameList> gameLists) {
+		this.gameLists = gameLists;
+	}
+	
+	
 	/* ----------------------------------------------------------------------------
 		Get/Set ID
 	---------------------------------------------------------------------------- */

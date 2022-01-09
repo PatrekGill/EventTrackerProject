@@ -1,6 +1,7 @@
 package com.skilldistillery.mygamelist.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -65,6 +66,7 @@ class GameListTest {
 	void test_GameList_games_mapping() {
 		assertNotNull(gameList);
 		assertNotNull(gameList.getGames());
+		assertFalse(gameList.getGames().isEmpty());
 		assertEquals("Mass Effect",gameList.getGames().get(0).getTitle());
 	}
 
