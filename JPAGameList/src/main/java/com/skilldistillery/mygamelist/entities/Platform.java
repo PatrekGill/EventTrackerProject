@@ -1,17 +1,23 @@
 package com.skilldistillery.mygamelist.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Platform {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@OneToMany(mappedBy = "platform")
+	List<GameRelease> releases;
 	
 	private String name;
 	private String abbreviation;
@@ -52,6 +58,21 @@ public class Platform {
 	}
 	public void setAbbreviation(String abbreviation) {
 		this.abbreviation = abbreviation;
+	}
+	
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Releases
+	---------------------------------------------------------------------------- */
+	public List<GameRelease> getReleases() {
+		if (releases == null) {
+			releases = new ArrayList<>();
+		}
+		
+		return releases;
+	}
+	public void setReleases(List<GameRelease> releases) {
+		this.releases = releases;
 	}
 
 

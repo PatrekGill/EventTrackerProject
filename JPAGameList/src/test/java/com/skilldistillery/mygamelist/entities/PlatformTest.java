@@ -50,5 +50,13 @@ class PlatformTest {
 		assertNotNull(platform);
 		assertEquals("PC", platform.getAbbreviation());
 	}
+	
+	@Test
+	void test_platform_releases_mapping() {
+		assertNotNull(platform);
+		assertNotNull(platform.getReleases());
+		assertFalse(platform.getReleases().isEmpty());
+		assertEquals("Mass Effect", platform.getReleases().get(0).getGame().getTitle());
+	}
 
 }
