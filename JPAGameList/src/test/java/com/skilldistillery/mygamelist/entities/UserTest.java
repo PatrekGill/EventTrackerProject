@@ -74,4 +74,12 @@ class UserTest {
 		assertFalse(user.getGameLists().isEmpty());
 		assertEquals("Playing",user.getGameLists().get(0).getName());
 	}
+	
+	@Test
+	void test_User_gamesOnList_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getGamesOnList());
+		assertFalse(user.getGamesOnList().isEmpty());
+		assertEquals("Mass Effect",user.getGamesOnList().get(0).getGame().getTitle());
+	}
 }

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	@Id
@@ -29,8 +31,13 @@ public class User {
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
 	
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<GameList> gameLists;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<UserGame> gamesOnList;
     
 	private String password;
 	private String username;
@@ -50,12 +57,26 @@ public class User {
 	---------------------------------------------------------------------------- */
 	public List<GameList> getGameLists() {
 		if (gameLists == null) {
-			gameLists = new ArrayList<GameList>();
+			gameLists = new ArrayList<>();
 		}
 		return gameLists;
 	}
 	public void setGameLists(List<GameList> gameLists) {
 		this.gameLists = gameLists;
+	}
+
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set gamesOnList
+	---------------------------------------------------------------------------- */
+	public List<UserGame> getGamesOnList() {
+		if (gamesOnList == null) {
+			gamesOnList = new ArrayList<>();
+		}
+		return gamesOnList;
+	}
+	public void setGamesOnList(List<UserGame> gamesOnList) {
+		this.gamesOnList = gamesOnList;
 	}
 	
 	
