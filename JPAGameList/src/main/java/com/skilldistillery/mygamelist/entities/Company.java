@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -37,13 +38,8 @@ public class Company {
 	private LocalDateTime createdDateTime;
     
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-		name = "game_company",
-		joinColumns = @JoinColumn(name="company_id"),
-		inverseJoinColumns = @JoinColumn(name="game_id") 
-    )
-    private List<Game> games;
+    @OneToMany(mappedBy = "company")
+    private List<GameCompany> games;
     
     private String name;
     private String description;
@@ -125,14 +121,13 @@ public class Company {
 	/* ----------------------------------------------------------------------------
 		Get/Set Games
 	---------------------------------------------------------------------------- */
-	public List<Game> getGames() {
+	public List<GameCompany> getGames() {
 		if (games == null) {
 			games = new ArrayList<>();
 		}
-		
 		return games;
 	}
-	public void setGames(List<Game> games) {
+	public void setGames(List<GameCompany> games) {
 		this.games = games;
 	}
 	

@@ -4,21 +4,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.skilldistillery.mygamelist.entities.Game;
-import com.skilldistillery.mygamelist.entities.Staff;
+import com.skilldistillery.mygamelist.entities.Platform;
 
-public class GameStaffId implements Serializable {
+public class GameReleaseId implements Serializable {
 	private Game game;
-	private Staff staff;
+	private Platform platform;
 	
-
 	/* ----------------------------------------------------------------------------
 		Constructors
 	---------------------------------------------------------------------------- */
-	public GameStaffId() {}
-	public GameStaffId(Game game, Staff staff) {
+	public GameReleaseId() {}
+	public GameReleaseId(Game game, Platform platform) {
 		super();
 		this.game = game;
-		this.staff = staff;
+		this.platform = platform;
 	}
 	
 	
@@ -27,7 +26,7 @@ public class GameStaffId implements Serializable {
 	---------------------------------------------------------------------------- */
 	@Override
 	public int hashCode() {
-		return Objects.hash(game, staff);
+		return Objects.hash(game, platform);
 	}
 	
 	@Override
@@ -38,13 +37,14 @@ public class GameStaffId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameStaffId other = (GameStaffId) obj;
-		return Objects.equals(game, other.game) && Objects.equals(staff, other.staff);
+		GameReleaseId other = (GameReleaseId) obj;
+		return Objects.equals(game, other.game) && Objects.equals(platform, other.platform);
 	}
 	
 	@Override
 	public String toString() {
-		return "GameStaffId [game=" + game + ", staff=" + staff + "]";
+		return "GameReleaseId [game=" + game + ", platform=" + platform + "]";
 	}
+	
 	
 }

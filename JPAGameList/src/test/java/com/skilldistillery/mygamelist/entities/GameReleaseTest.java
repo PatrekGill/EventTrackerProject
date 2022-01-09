@@ -1,6 +1,7 @@
 package com.skilldistillery.mygamelist.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,10 +13,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.mygamelist.compositeids.GameReleaseId;
+
 class GameReleaseTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	
+	private GameReleaseId releaseId;
 	private GameRelease release;
+	private Game game;
+	private Platform platform;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -29,12 +36,20 @@ class GameReleaseTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		game = new Game(1);
+		platform = new Platform(1);
+		releaseId = new GameReleaseId(game,platform);
+		
 		em = emf.createEntityManager();
-		release = em.find(GameRelease.class, 1);
+		release = em.find(GameRelease.class, releaseId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		game = null;
+		platform = null;
+		releaseId = null;
+		
 		em.close();
 		release = null;
 	}

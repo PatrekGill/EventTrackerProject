@@ -4,27 +4,27 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.skilldistillery.mygamelist.compositeids.GameReleaseId;
+
 @Entity
+@IdClass(GameReleaseId.class)
 @Table(name="game_release")
 public class GameRelease {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name="platform_id")
-	private Platform platform;
-	
 	@ManyToOne
 	@JoinColumn(name="game_id")
 	private Game game;
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name="platform_id")
+	private Platform platform;
 	
 	private LocalDate date;
 	
@@ -34,17 +34,6 @@ public class GameRelease {
 	---------------------------------------------------------------------------- */
 	public GameRelease() {}
 	
-
-	/* ----------------------------------------------------------------------------
-		Get/Set ID
-	---------------------------------------------------------------------------- */
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-
 
 	/* ----------------------------------------------------------------------------
 		Get/Set platform
@@ -83,25 +72,8 @@ public class GameRelease {
 		Misc
 	---------------------------------------------------------------------------- */
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GameRelease other = (GameRelease) obj;
-		return id == other.id;
-	}
-
-	@Override
 	public String toString() {
-		return "Release [id=" + id + ", platform=" + platform + ", game=" + game + ", date=" + date + "]";
+		return "GameRelease [game=" + game + ", platform=" + platform + ", date=" + date + "]";
 	}
 	
 }

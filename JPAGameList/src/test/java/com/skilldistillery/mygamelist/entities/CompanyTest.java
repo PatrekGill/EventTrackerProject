@@ -76,6 +76,6 @@ class CompanyTest {
 		assertNotNull(company);
 		assertNotNull(company.getGames());
 		assertFalse(company.getGames().isEmpty());
-		assertEquals("Mass Effect", company.getGames().get(0).getTitle());
+		assertEquals("Mass Effect", company.getGames().get(0).getGame().getTitle());
 	}
 }

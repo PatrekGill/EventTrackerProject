@@ -83,7 +83,7 @@ class GameTest {
 		assertNotNull(game);
 		assertNotNull(game.getCompanies());
 		assertFalse(game.getCompanies().isEmpty());
-		assertEquals("Bioware", game.getCompanies().get(0).getName());
+		assertEquals("Bioware", game.getCompanies().get(0).getCompany().getName());
 	}
 	
 	@Test

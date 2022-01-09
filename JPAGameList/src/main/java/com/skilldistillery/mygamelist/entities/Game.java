@@ -36,12 +36,15 @@ public class Game {
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
     
-    @ManyToMany(mappedBy="games")
-    private List<Company> companies;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "game")
+    private List<GameCompany> companies;
+    
+    @JsonIgnore
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy="primaryGame")
     private List<GameRelation> relations;
     
@@ -136,16 +139,17 @@ public class Game {
 	/* ----------------------------------------------------------------------------
 		Get/Set Companies
 	---------------------------------------------------------------------------- */
-	public List<Company> getCompanies() {
+	public List<GameCompany> getCompanies() {
 		if (companies == null) {
-			companies = new ArrayList<>();
+			companies = new ArrayList<GameCompany>();
 		}
 		
 		return companies;
 	}
-	public void setCompanies(List<Company> companies) {
+	public void setCompanies(List<GameCompany> companies) {
 		this.companies = companies;
 	}
+	
 	
 	
 	/* ----------------------------------------------------------------------------
