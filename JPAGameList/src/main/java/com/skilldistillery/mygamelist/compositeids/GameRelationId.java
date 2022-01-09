@@ -1,7 +1,9 @@
-package com.skilldistillery.mygamelist.entities;
+package com.skilldistillery.mygamelist.compositeids;
 
 import java.io.Serializable;
 import java.util.Objects;
+
+import com.skilldistillery.mygamelist.entities.Game;
 
 public class GameRelationId implements Serializable {
 	private Game primaryGame;

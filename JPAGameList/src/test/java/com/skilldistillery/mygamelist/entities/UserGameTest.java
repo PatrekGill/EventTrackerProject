@@ -12,10 +12,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.mygamelist.compositeids.UserGameId;
+
 class UserGameTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	
+	private UserGameId userGameId;
 	private UserGame userGame;
+	private Game game;
+	private User user;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -29,12 +35,20 @@ class UserGameTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		game = new Game(1);
+		user = new User(1);
+		userGameId = new UserGameId(user,game);
+		
 		em = emf.createEntityManager();
-		userGame = em.find(UserGame.class, 1);
+		userGame = em.find(UserGame.class, userGameId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		game = null;
+		user = null;
+		userGameId = null;
+		
 		em.close();
 		userGame = null;
 	}

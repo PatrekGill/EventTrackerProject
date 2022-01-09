@@ -1,30 +1,32 @@
-package com.skilldistillery.mygamelist.entities;
+package com.skilldistillery.mygamelist.compositeids;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class GameStaffId implements Serializable {
-	private Game game;
-	private Staff staff;
-	
+import com.skilldistillery.mygamelist.entities.Game;
+import com.skilldistillery.mygamelist.entities.User;
 
+public class UserGameId implements Serializable {
+	private User user;
+	private Game game;
+	
 	/* ----------------------------------------------------------------------------
 		Constructors
 	---------------------------------------------------------------------------- */
-	public GameStaffId() {}
-	public GameStaffId(Game game, Staff staff) {
+	public UserGameId() {}
+	public UserGameId(User user, Game game) {
 		super();
+		this.user = user;
 		this.game = game;
-		this.staff = staff;
 	}
-	
+
 	
 	/* ----------------------------------------------------------------------------
 		Misc
 	---------------------------------------------------------------------------- */
 	@Override
 	public int hashCode() {
-		return Objects.hash(game, staff);
+		return Objects.hash(game, user);
 	}
 	
 	@Override
@@ -35,16 +37,14 @@ public class GameStaffId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameStaffId other = (GameStaffId) obj;
-		return Objects.equals(game, other.game) && Objects.equals(staff, other.staff);
+		UserGameId other = (UserGameId) obj;
+		return Objects.equals(game, other.game) && Objects.equals(user, other.user);
 	}
 	
 	@Override
 	public String toString() {
-		return "GameStaffId [game=" + game + ", staff=" + staff + "]";
+		return "UserGameId [user=" + user + ", game=" + game + "]";
 	}
-	
-	
 	
 	
 }
