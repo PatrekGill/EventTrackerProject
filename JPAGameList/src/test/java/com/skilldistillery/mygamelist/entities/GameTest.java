@@ -91,4 +91,12 @@ class GameTest {
 		assertEquals("RPG", game.getTags().get(0).getName());
 	}
 	
+	@Test
+	void test_game_releases_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getReleases());
+		assertFalse(game.getReleases().isEmpty());
+		assertEquals("PC", game.getReleases().get(0).getPlatform().getAbbreviation());
+	}
+	
 }

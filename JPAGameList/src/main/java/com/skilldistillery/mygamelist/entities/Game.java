@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -37,6 +38,9 @@ public class Game {
 
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
+    
+    @OneToMany(mappedBy="game")
+    private List<GameRelease> releases;
     
 	
 	private String description;
@@ -145,6 +149,20 @@ public class Game {
 	}
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Releases
+	---------------------------------------------------------------------------- */
+	public List<GameRelease> getReleases() {
+		if (releases == null) {
+			releases = new ArrayList<>();
+		}
+		
+		return releases;
+	}
+	public void setReleases(List<GameRelease> releases) {
+		this.releases = releases;
 	}
 	
 	
