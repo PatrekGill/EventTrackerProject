@@ -41,6 +41,9 @@ public class Game {
 
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
+
+    @OneToMany(mappedBy="primaryGame")
+    private List<GameRelation> relations;
     
     @JsonIgnore
     @OneToMany(mappedBy="game")
@@ -51,7 +54,6 @@ public class Game {
     @OrderBy("created_date_time DESC") // most recent first
     private List<GameComment> comments;
 
-    
 	private String description;
 	private String title;
 	
@@ -143,6 +145,21 @@ public class Game {
 	}
 	public void setCompanies(List<Company> companies) {
 		this.companies = companies;
+	}
+	
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Relations
+	---------------------------------------------------------------------------- */
+	public List<GameRelation> getRelations() {
+		if (relations == null) {
+			relations = new ArrayList<>();
+		}
+		
+		return relations;
+	}
+	public void setRelations(List<GameRelation> relations) {
+		this.relations = relations;
 	}
 	
 	

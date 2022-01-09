@@ -110,4 +110,12 @@ class GameTest {
 		assertEquals("I agree", game.getComments().get(0).getText());
 	}
 	
+	@Test
+	void test_Game_relations_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getRelations());
+		assertFalse(game.getRelations().isEmpty());
+		assertEquals("Sequel", game.getRelations().get(0).getRelationship().getName());
+	}
+	
 }
