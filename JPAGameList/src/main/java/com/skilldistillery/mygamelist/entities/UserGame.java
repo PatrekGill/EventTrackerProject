@@ -1,6 +1,6 @@
 package com.skilldistillery.mygamelist.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,12 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 @Entity
-@Table(name="game_list")
-public class GameList {
+@Table(name="user_game")
+public class UserGame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,22 +23,31 @@ public class GameList {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@Column(name="updated_date_time")
-    @UpdateTimestamp
-    private LocalDateTime updateDateTime;
-	
-    @Column(name = "created_date_time")
-	@CreationTimestamp
-	private LocalDateTime createdDateTime;
-	
-	private String name;
-	private boolean permanent;
-	
+	@ManyToOne
+	@JoinColumn(name="game_id")
+	private Game game;
 
+	@ManyToOne
+	@JoinColumn(name="status_id")
+	private Status status;
+	
+	@Column(name="start_date")
+    private LocalDate startDate;
+	
+	@Column(name="finish_date")
+	private LocalDate finishDate;
+
+	@Column(name="hours_played")
+	private double hoursPlayed;
+	
+	private String notes;
+	private int score;
+
+	
 	/* ----------------------------------------------------------------------------
 		Constructors
 	---------------------------------------------------------------------------- */
-	public GameList() {}
+	public UserGame() {}
 	
 
 	/* ----------------------------------------------------------------------------
@@ -52,28 +58,6 @@ public class GameList {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-
-	/* ----------------------------------------------------------------------------
-		Get/Set updateDateTime
-	---------------------------------------------------------------------------- */
-	public LocalDateTime getUpdateDateTime() {
-		return updateDateTime;
-	}
-	public void setUpdateDateTime(LocalDateTime updateDateTime) {
-		this.updateDateTime = updateDateTime;
-	}
-
-
-	/* ----------------------------------------------------------------------------
-		Get/Set createdDateTime
-	---------------------------------------------------------------------------- */
-	public LocalDateTime getCreatedDateTime() {
-		return createdDateTime;
-	}
-	public void setCreatedDateTime(LocalDateTime createdDateTime) {
-		this.createdDateTime = createdDateTime;
 	}
 
 
@@ -89,27 +73,82 @@ public class GameList {
 
 
 	/* ----------------------------------------------------------------------------
-		Get/Set Name
+		Get/Set Game
 	---------------------------------------------------------------------------- */
-	public String getName() {
-		return name;
+	public Game getGame() {
+		return game;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 
 
 	/* ----------------------------------------------------------------------------
-		Get/Set permanent
+		Get/Set Status
 	---------------------------------------------------------------------------- */
-	public boolean isPermanent() {
-		return permanent;
+	public Status getStatus() {
+		return status;
 	}
-	public void setPermanent(boolean permanent) {
-		this.permanent = permanent;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Start Date
+	---------------------------------------------------------------------------- */
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Finish Date
+	---------------------------------------------------------------------------- */
+	public LocalDate getFinishDate() {
+		return finishDate;
+	}
+	public void setFinishDate(LocalDate finishDate) {
+		this.finishDate = finishDate;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Hours Played
+	---------------------------------------------------------------------------- */
+	public double getHoursPlayed() {
+		return hoursPlayed;
+	}
+	public void setHoursPlayed(double hoursPlayed) {
+		this.hoursPlayed = hoursPlayed;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Notes
+	---------------------------------------------------------------------------- */
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+	/* ----------------------------------------------------------------------------
+		Get/Set Score
+	---------------------------------------------------------------------------- */
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+
 	/* ----------------------------------------------------------------------------
 		Misc
 	---------------------------------------------------------------------------- */
@@ -126,13 +165,14 @@ public class GameList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameList other = (GameList) obj;
+		UserGame other = (UserGame) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "GameList [id=" + id + ", user=" + user + ", name=" + name + "]";
+		return "UserGame [id=" + id + ", user=" + user + ", game=" + game + "]";
 	}
+	
 	
 }

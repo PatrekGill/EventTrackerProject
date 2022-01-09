@@ -16,6 +16,7 @@
 		<class>com.skilldistillery.mygamelist.entities.Staff</class>
 		<class>com.skilldistillery.mygamelist.entities.Status</class>
 		<class>com.skilldistillery.mygamelist.entities.User</class>
+		<class>com.skilldistillery.mygamelist.entities.UserGame</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
