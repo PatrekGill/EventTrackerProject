@@ -48,6 +48,10 @@ class GameRelationTest {
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
+		
+		primaryGame = null;
+		otherGame = null;
+		relationId = null;
 		gameRelation = null;
 	}
 

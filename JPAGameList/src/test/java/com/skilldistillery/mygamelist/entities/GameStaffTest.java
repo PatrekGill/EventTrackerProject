@@ -18,7 +18,11 @@ import com.skilldistillery.mygamelist.compositeids.GameStaffId;
 class GameStaffTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	
+	private GameStaffId gameStaffId;
 	private GameStaff gameStaff;
+	private Game game;
+	private Staff staff;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,12 +36,20 @@ class GameStaffTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		game = new Game(1);
+		staff = new Staff(1);
+		gameStaffId = new GameStaffId(game,staff);
+		
 		em = emf.createEntityManager();
-		gameStaff = em.find(GameStaff.class,new GameStaffId(1,1));
+		gameStaff = em.find(GameStaff.class,gameStaffId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		game = null;
+		staff = null;
+		gameStaffId = null;
+		
 		em.close();
 		gameStaff = null;
 	}
@@ -47,5 +59,19 @@ class GameStaffTest {
 		assertNotNull(gameStaff);
 		assertEquals("Project Director", gameStaff.getRole());
 	}
+	
 
+	@Test
+	void test_GameStaff_Game_mapping() {
+		assertNotNull(gameStaff);
+		assertNotNull(gameStaff.getGame());
+		assertEquals("Mass Effect", gameStaff.getGame().getTitle());
+	}
+
+	@Test
+	void test_GameStaff_Staff_mapping() {
+		assertNotNull(gameStaff);
+		assertNotNull(gameStaff.getStaff());
+		assertEquals("Casey Hudson", gameStaff.getStaff().getName());
+	}
 }

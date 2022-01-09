@@ -1,9 +1,10 @@
 package com.skilldistillery.mygamelist.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.skilldistillery.mygamelist.compositeids.GameStaffId;
@@ -13,12 +14,14 @@ import com.skilldistillery.mygamelist.compositeids.GameStaffId;
 @IdClass(GameStaffId.class)
 public class GameStaff {
 	@Id
-	@Column(name="game_id")
-	private int gameId;
+	@ManyToOne
+	@JoinColumn(name="game_id")
+	private Game game;
 	
 	@Id
-	@Column(name="staff_id")
-	private int staffId;
+	@ManyToOne
+	@JoinColumn(name="staff_id")
+	private Staff staff;
 	
 	private String role;
 	
@@ -30,24 +33,24 @@ public class GameStaff {
 	
 
 	/* ----------------------------------------------------------------------------
-		Get/Set gameId
+		Get/Set Game
 	---------------------------------------------------------------------------- */
-	public int getGameId() {
-		return gameId;
+	public Game getGame() {
+		return game;
 	}
-	public void setGameId(int gameId) {
-		this.gameId = gameId;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 	
 
 	/* ----------------------------------------------------------------------------
-		Get/Set staffId
+		Get/Set Staff
 	---------------------------------------------------------------------------- */
-	public int getStaffId() {
-		return staffId;
+	public Staff getStaff() {
+		return staff;
 	}
-	public void setStaffId(int staffId) {
-		this.staffId = staffId;
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
 
@@ -67,7 +70,7 @@ public class GameStaff {
 	---------------------------------------------------------------------------- */
 	@Override
 	public String toString() {
-		return "GameStaff [gameId=" + gameId + ", staffId=" + staffId + ", role=" + role + "]";
+		return "GameStaff [game=" + game + ", staff=" + staff + ", role=" + role + "]";
 	}
 	
 	

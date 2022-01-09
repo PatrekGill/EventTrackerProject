@@ -47,6 +47,10 @@ public class GameCompanyTest {
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
+		
+		gameCompanyId = null;
+		company = null;
+		game = null;
 		gameCompany = null;
 	}
 
