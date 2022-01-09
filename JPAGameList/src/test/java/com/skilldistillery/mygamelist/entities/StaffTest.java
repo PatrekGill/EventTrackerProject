@@ -1,6 +1,7 @@
 package com.skilldistillery.mygamelist.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -72,5 +73,12 @@ class StaffTest {
 		assertEquals(1, staff.getUpdateDateTime().getMonthValue());
 		assertEquals(8, staff.getUpdateDateTime().getDayOfMonth());
 	}
-
+	
+	@Test
+	void test_Staff_games_mapping() {
+		assertNotNull(staff);
+		assertNotNull(staff.getGames());
+		assertFalse(staff.getGames().isEmpty());
+		assertEquals("Mass Effect", staff.getGames().get(0).getGame().getTitle());
+	}
 }
