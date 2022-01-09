@@ -41,6 +41,10 @@ public class Game {
     private List<GameCompany> companies;
     
     @JsonIgnore
+    @OneToMany(mappedBy = "game")
+    private List<GameStaff> staff;
+    
+    @JsonIgnore
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
     
@@ -150,6 +154,20 @@ public class Game {
 		this.companies = companies;
 	}
 	
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Staff
+	---------------------------------------------------------------------------- */
+	public List<GameStaff> getStaff() {
+		if (staff == null) {
+			staff = new ArrayList<GameStaff>();
+		}
+		
+		return staff;
+	}
+	public void setStaff(List<GameStaff> staff) {
+		this.staff = staff;
+	}
 	
 	
 	/* ----------------------------------------------------------------------------

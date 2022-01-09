@@ -87,6 +87,14 @@ class GameTest {
 	}
 	
 	@Test
+	void test_Game_staff_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getStaff());
+		assertFalse(game.getStaff().isEmpty());
+		assertEquals("Casey Hudson", game.getStaff().get(0).getStaff().getName());
+	}
+	
+	@Test
 	void test_Game_tags_mapping() {
 		assertNotNull(game);
 		assertNotNull(game.getTags());
