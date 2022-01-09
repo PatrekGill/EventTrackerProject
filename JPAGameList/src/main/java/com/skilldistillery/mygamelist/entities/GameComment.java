@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="game_comment")
 public class GameComment {
@@ -44,6 +46,7 @@ public class GameComment {
     @JoinColumn(name="game_id")
     private Game game;
     
+    @JsonIgnore
     @OneToMany
     @JoinColumn(name="in_reply_to")
     private List<GameComment> replies;

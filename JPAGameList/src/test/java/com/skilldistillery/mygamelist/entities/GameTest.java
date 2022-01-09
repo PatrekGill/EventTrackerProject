@@ -41,42 +41,45 @@ class GameTest {
 		em.close();
 		game = null;
 	}
+	
+	
+	
 
 	@Test
-	void test_game_title_mapping() {
+	void test_Game_title_mapping() {
 		assertNotNull(game);
 		assertEquals("Mass Effect", game.getTitle());
 	}
 	
 	@Test
-	void test_game_createdDateTime_mapping() {
+	void test_Game_createdDateTime_mapping() {
 		assertNotNull(game);
 		assertEquals(1, game.getCreatedDateTime().getMonthValue());
 		assertEquals(7, game.getCreatedDateTime().getDayOfMonth());
 	}
 	
 	@Test
-	void test_game_updatedDateTime_mapping() {
+	void test_Game_updatedDateTime_mapping() {
 		assertNotNull(game);
 		assertEquals(1, game.getUpdateDateTime().getMonthValue());
 		assertEquals(8, game.getUpdateDateTime().getDayOfMonth());
 	}
 	
 	@Test
-	void test_game_description_mapping() {
+	void test_Game_description_mapping() {
 		assertNotNull(game);
 		assertEquals("First Mass Effect", game.getDescription());
 	}
 	
 	@Test
-	void test_game_imageURL_mapping() {
+	void test_Game_imageURL_mapping() {
 		assertNotNull(game);
 		assertNotNull(game.getImageURL());
 		assertTrue(game.getImageURL().contains("https"));
 	}
 	
 	@Test
-	void test_game_companies_mapping() {
+	void test_Game_companies_mapping() {
 		assertNotNull(game);
 		assertNotNull(game.getCompanies());
 		assertFalse(game.getCompanies().isEmpty());
@@ -84,7 +87,7 @@ class GameTest {
 	}
 	
 	@Test
-	void test_game_tags_mapping() {
+	void test_Game_tags_mapping() {
 		assertNotNull(game);
 		assertNotNull(game.getTags());
 		assertFalse(game.getTags().isEmpty());
@@ -92,11 +95,19 @@ class GameTest {
 	}
 	
 	@Test
-	void test_game_releases_mapping() {
+	void test_Game_releases_mapping() {
 		assertNotNull(game);
 		assertNotNull(game.getReleases());
 		assertFalse(game.getReleases().isEmpty());
 		assertEquals("PC", game.getReleases().get(0).getPlatform().getAbbreviation());
+	}
+	
+	@Test
+	void test_Game_comments_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getComments());
+		assertFalse(game.getComments().isEmpty());
+		assertEquals("I agree", game.getComments().get(0).getText());
 	}
 	
 }

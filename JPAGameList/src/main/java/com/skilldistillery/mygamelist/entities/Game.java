@@ -12,9 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Game {
@@ -39,10 +42,16 @@ public class Game {
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
     
+    @JsonIgnore
     @OneToMany(mappedBy="game")
     private List<GameRelease> releases;
     
-	
+    @JsonIgnore
+    @OneToMany(mappedBy="game")
+    @OrderBy("created_date_time DESC") // most recent first
+    private List<GameComment> comments;
+
+    
 	private String description;
 	private String title;
 	
@@ -163,6 +172,21 @@ public class Game {
 	}
 	public void setReleases(List<GameRelease> releases) {
 		this.releases = releases;
+	}
+	
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Comments
+	---------------------------------------------------------------------------- */
+	public List<GameComment> getComments() {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		
+		return comments;
+	}
+	public void setComments(List<GameComment> comments) {
+		this.comments = comments;
 	}
 	
 	
