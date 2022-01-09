@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.mygamelist.OptionalRetriever;
+import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.repositories.GameRepository;
 
@@ -12,6 +14,8 @@ import com.skilldistillery.mygamelist.repositories.GameRepository;
 public class GameServiceImpl implements GameService {
 	@Autowired
 	private GameRepository gameRepo;
+	@Autowired
+	private OptionalRetriever<Game> gameRetriever;
 	
 	@Override
 	public List<Game> getAllGames() {
@@ -20,7 +24,9 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public Game getGameById(int id) {
-		return gameRepo.getById(id);
+		return gameRetriever.get(
+			gameRepo.findById(id)
+		);
 	}
 
 }

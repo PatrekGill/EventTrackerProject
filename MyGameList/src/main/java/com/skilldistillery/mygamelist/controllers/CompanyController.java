@@ -10,35 +10,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mygamelist.entities.Game;
-import com.skilldistillery.mygamelist.services.GameService;
+import com.skilldistillery.mygamelist.entities.Company;
+import com.skilldistillery.mygamelist.services.CompanyService;
 
 @RestController
 @RequestMapping("api")
-public class GameController {
+public class CompanyController {
 	@Autowired
-	private GameService gameService;
+	private CompanyService companyService;
 	
 	/* ----------------------------------------------------------------------------
-		GET all games
+		GET all companies
 	---------------------------------------------------------------------------- */
-	@GetMapping("games")
-	public List<Game> index() {
-		return gameService.getAllGames();
+	@GetMapping("companies")
+	public List<Company> index() {
+		return companyService.getAllCompanies();
 	}
 	
+	
 	/* ----------------------------------------------------------------------------
-		GET game by id
+		GET Company by id
 	---------------------------------------------------------------------------- */
-	@GetMapping("games/{id}")
-	public Game getGameById(
+	@GetMapping("companies/{id}")
+	public Company getCompanyById(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		Game game = null;
+		Company company = null;
 		try {
-			game = gameService.getGameById(id);
-			if (game == null) {
+			company = companyService.getCompanyById(id);
+			if (company == null) {
 				res.setStatus(404);
 			}
 			
@@ -47,6 +48,6 @@ public class GameController {
 			res.setStatus(400);
 		}
 		
-		return game;
+		return company;
 	}
 }
