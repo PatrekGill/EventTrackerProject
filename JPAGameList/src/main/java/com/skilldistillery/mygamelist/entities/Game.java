@@ -1,6 +1,8 @@
 package com.skilldistillery.mygamelist.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,6 +31,10 @@ public class Game {
     @Column(name = "created_date_time")
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
+    
+    @ManyToMany(mappedBy="games")
+    private List<Company> companies;
+    
 	
 	private String description;
 	private String title;
@@ -107,6 +114,21 @@ public class Game {
 		this.description = description;
 	}
 
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Companies
+	---------------------------------------------------------------------------- */
+	public List<Company> getCompanies() {
+		if (companies == null) {
+			companies = new ArrayList<>();
+		}
+		
+		return companies;
+	}
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
+	}
+	
 	
 	/* ----------------------------------------------------------------------------
 		Misc

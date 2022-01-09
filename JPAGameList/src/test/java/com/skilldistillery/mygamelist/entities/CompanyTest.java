@@ -71,4 +71,11 @@ class CompanyTest {
 		assertEquals(8, company.getUpdateDateTime().getDayOfMonth());
 	}
 
+	@Test
+	void test_game_companies_mapping() {
+		assertNotNull(company);
+		assertNotNull(company.getGames());
+		assertFalse(company.getGames().isEmpty());
+		assertEquals("Mass Effect", company.getGames().get(0).getTitle());
+	}
 }

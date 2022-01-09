@@ -1,6 +1,7 @@
 package com.skilldistillery.mygamelist.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -73,5 +74,13 @@ class GameTest {
 		assertNotNull(game.getImageURL());
 		assertTrue(game.getImageURL().contains("https"));
 	}
-
+	
+	@Test
+	void test_game_companies_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getCompanies());
+		assertFalse(game.getCompanies().isEmpty());
+		assertEquals("Bioware", game.getCompanies().get(0).getName());
+	}
+	
 }
