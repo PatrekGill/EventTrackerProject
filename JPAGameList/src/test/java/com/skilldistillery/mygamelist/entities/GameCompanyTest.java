@@ -18,7 +18,11 @@ import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 public class GameCompanyTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	
+	private GameCompanyId gameCompanyId;
 	private GameCompany gameCompany;
+	private Game game;
+	private Company company;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,8 +36,12 @@ public class GameCompanyTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		game = new Game(1);
+		company = new Company(1);
+		gameCompanyId = new GameCompanyId(game,company);
+		
 		em = emf.createEntityManager();
-		gameCompany = em.find(GameCompany.class,new GameCompanyId(1,1));
+		gameCompany = em.find(GameCompany.class,gameCompanyId);
 	}
 
 	@AfterEach
@@ -42,6 +50,21 @@ public class GameCompanyTest {
 		gameCompany = null;
 	}
 
+	
+	@Test
+	void test_GameCompany_game_mapping() {
+		assertNotNull(gameCompany);
+		assertNotNull(gameCompany.getGame());
+		assertEquals("Mass Effect", gameCompany.getGame().getTitle());
+	}
+	
+	@Test
+	void test_GameCompany_company_mapping() {
+		assertNotNull(gameCompany);
+		assertNotNull(gameCompany.getCompany());
+		assertEquals("Bioware", gameCompany.getCompany().getName());
+	}
+	
 	@Test
 	void test_GameCompany_role_mapping() {
 		assertNotNull(gameCompany);

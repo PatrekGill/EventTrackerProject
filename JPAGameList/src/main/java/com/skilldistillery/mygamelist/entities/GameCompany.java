@@ -1,9 +1,10 @@
 package com.skilldistillery.mygamelist.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
@@ -13,12 +14,14 @@ import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 @Table(name="game_company")
 public class GameCompany {
 	@Id
-	@Column(name="game_id")
-	private int gameId;
+	@ManyToOne
+	@JoinColumn(name="game_id")
+	private Game game;
 	
 	@Id
-	@Column(name="company_id")
-	private int companyId;
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	private Company company;
 	
 	private String role;
 	
@@ -30,24 +33,24 @@ public class GameCompany {
 	
 	
 	/* ----------------------------------------------------------------------------
-		Get/Set gameId
+		Get/Set Game
 	---------------------------------------------------------------------------- */
-	public int getGameId() {
-		return gameId;
+	public Game getGame() {
+		return game;
 	}
-	public void setGameId(int gameId) {
-		this.gameId = gameId;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 	
 	
 	/* ----------------------------------------------------------------------------
-		Get/Set companyId
+		Get/Set Company
 	---------------------------------------------------------------------------- */
-	public int getCompanyId() {
-		return companyId;
+	public Company getCompany() {
+		return company;
 	}
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 
@@ -67,6 +70,6 @@ public class GameCompany {
 	---------------------------------------------------------------------------- */
 	@Override
 	public String toString() {
-		return "GameCompany [gameId=" + gameId + ", companyId=" + companyId + ", role=" + role + "]";
+		return "GameCompany [game=" + game + ", company=" + company + ", role=" + role + "]";
 	}
 }
