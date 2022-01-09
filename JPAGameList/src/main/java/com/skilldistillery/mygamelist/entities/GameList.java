@@ -1,6 +1,8 @@
 package com.skilldistillery.mygamelist.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,11 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="game_list")
@@ -33,6 +39,15 @@ public class GameList {
     @Column(name = "created_date_time")
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
+    
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+		name = "game_to_list",
+		joinColumns = @JoinColumn(name="list_id"),
+		inverseJoinColumns = @JoinColumn(name="game_id") 
+    )
+    private List<Game> games;
 	
 	private String name;
 	private boolean permanent;
@@ -108,8 +123,23 @@ public class GameList {
 	public void setPermanent(boolean permanent) {
 		this.permanent = permanent;
 	}
-
 	
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Games
+	---------------------------------------------------------------------------- */
+	public List<Game> getGames() {
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+		
+		return games;
+	}
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+
 	/* ----------------------------------------------------------------------------
 		Misc
 	---------------------------------------------------------------------------- */

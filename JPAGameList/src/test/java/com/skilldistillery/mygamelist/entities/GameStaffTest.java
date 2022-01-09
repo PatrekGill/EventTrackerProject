@@ -13,8 +13,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.mygamelist.compositeids.GameStaffId;
-
 class GameStaffTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;

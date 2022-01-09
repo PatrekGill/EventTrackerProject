@@ -53,11 +53,19 @@ class GameListTest {
 		assertNotNull(gameList);
 		assertTrue(gameList.isPermanent());
 	}
+	
 	@Test
 	void test_GameList_user_mapping() {
 		assertNotNull(gameList);
 		assertNotNull(gameList.getUser());
 		assertEquals(1,gameList.getUser().getId());
+	}
+	
+	@Test
+	void test_GameList_games_mapping() {
+		assertNotNull(gameList);
+		assertNotNull(gameList.getGames());
+		assertEquals("Mass Effect",gameList.getGames().get(0).getTitle());
 	}
 
 	@Test
@@ -66,6 +74,7 @@ class GameListTest {
 		assertEquals(1, gameList.getCreatedDateTime().getMonthValue());
 		assertEquals(7, gameList.getCreatedDateTime().getDayOfMonth());
 	}
+	
 	@Test
 	void test_GameList_updatedDateTime_mapping() {
 		assertNotNull(gameList);

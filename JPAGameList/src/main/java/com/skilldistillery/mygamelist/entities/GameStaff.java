@@ -7,8 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.skilldistillery.mygamelist.compositeids.GameStaffId;
-
 @Entity
 @Table(name="game_staff")
 @IdClass(GameStaffId.class)

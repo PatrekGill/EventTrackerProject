@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,6 +50,7 @@ public class GameComment {
     @JsonIgnore
     @OneToMany
     @JoinColumn(name="in_reply_to")
+    @OrderBy("created_date_time DESC") // most recent
     private List<GameComment> replies;
 
     private boolean visible;
