@@ -83,4 +83,12 @@ class GameTest {
 		assertEquals("Bioware", game.getCompanies().get(0).getName());
 	}
 	
+	@Test
+	void test_game_tags_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getTags());
+		assertFalse(game.getTags().isEmpty());
+		assertEquals("RPG", game.getTags().get(0).getName());
+	}
+	
 }

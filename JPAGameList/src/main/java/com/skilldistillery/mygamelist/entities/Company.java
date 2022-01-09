@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Company {
 	@Id
@@ -34,6 +36,7 @@ public class Company {
 	@CreationTimestamp
 	private LocalDateTime createdDateTime;
     
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
 		name = "game_company",

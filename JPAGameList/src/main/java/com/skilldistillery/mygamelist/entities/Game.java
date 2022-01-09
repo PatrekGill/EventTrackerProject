@@ -34,6 +34,9 @@ public class Game {
     
     @ManyToMany(mappedBy="games")
     private List<Company> companies;
+
+    @ManyToMany(mappedBy="games")
+    private List<Tag> tags;
     
 	
 	private String description;
@@ -127,6 +130,21 @@ public class Game {
 	}
 	public void setCompanies(List<Company> companies) {
 		this.companies = companies;
+	}
+	
+	
+	/* ----------------------------------------------------------------------------
+		Get/Set Tags
+	---------------------------------------------------------------------------- */
+	public List<Tag> getTags() {
+		if (tags == null) {
+			tags = new ArrayList<>();
+		}
+		
+		return tags;
+	}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 	
 	

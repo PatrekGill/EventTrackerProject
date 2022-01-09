@@ -1,17 +1,33 @@
 package com.skilldistillery.mygamelist.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonIgnore
+	@ManyToMany
+    @JoinTable(
+		name = "game_tag",
+		joinColumns = @JoinColumn(name="tag_id"),
+		inverseJoinColumns = @JoinColumn(name="game_id") 
+    )
+	private List<Game> games;
 	
 	private String name;
 
@@ -42,6 +58,19 @@ public class Tag {
 		this.name = name;
 	}
 
+	/* ----------------------------------------------------------------------------
+		Get/Set Games
+	---------------------------------------------------------------------------- */
+	public List<Game> getGames() {
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+		
+		return games;
+	}
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
 	
 	/* ----------------------------------------------------------------------------
 		Misc

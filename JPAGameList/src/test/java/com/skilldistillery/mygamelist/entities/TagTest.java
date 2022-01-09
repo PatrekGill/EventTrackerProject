@@ -45,4 +45,12 @@ class TagTest {
 		assertEquals("RPG", tag.getName());
 	}
 
+
+	@Test
+	void test_game_companies_mapping() {
+		assertNotNull(tag);
+		assertNotNull(tag.getGames());
+		assertFalse(tag.getGames().isEmpty());
+		assertEquals("Mass Effect", tag.getGames().get(0).getTitle());
+	}
 }
