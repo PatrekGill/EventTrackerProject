@@ -7,12 +7,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.skilldistillery.mygamelist.compositeids.GameRelationId;
 
 @Entity
 @IdClass(GameRelationId.class)
 @Table(name="game_relation")
 public class GameRelation {
+	@JsonIgnore
 	@Id
 	@ManyToOne
 	@JoinColumn(name="primary_game_id")

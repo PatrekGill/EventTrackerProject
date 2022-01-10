@@ -1,5 +1,6 @@
 package com.skilldistillery.mygamelist.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.GameCompany;
+import com.skilldistillery.mygamelist.entities.GameRelation;
+import com.skilldistillery.mygamelist.entities.GameStaff;
 import com.skilldistillery.mygamelist.entities.Platform;
+import com.skilldistillery.mygamelist.entities.Staff;
 import com.skilldistillery.mygamelist.services.GameService;
 import com.skilldistillery.mygamelist.services.PlatformService;
+import com.skilldistillery.mygamelist.services.StaffService;
 
 @RestController
 @RequestMapping("api")
@@ -24,6 +29,8 @@ public class GameController {
 	private GameService gameService;
 	@Autowired
 	private PlatformService platformService;
+	@Autowired
+	private StaffService staffService;
 	
 	/* ----------------------------------------------------------------------------
 		GET all games
@@ -105,5 +112,70 @@ public class GameController {
 		@PathVariable int id
 	) {
 		return platformService.getPlatformsForGame(id);
+	}
+	
+	
+	/* ----------------------------------------------------------------------------
+		GET Game Relationships
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/relationships")
+	public List<GameRelation> getGameRelationships(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		List<GameRelation> relations = new ArrayList<>();
+		try {
+			Game game = gameService.findById(id);
+			if (game == null) {
+				res.setStatus(404);
+				
+			} else {
+				relations = game.getRelations();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+		return relations;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET Game Staff with roles
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/staff/roles")
+	public List<GameStaff> getGameStaffWithRoles(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		List<GameStaff> gameStaff = new ArrayList<>();
+		try {
+			Game game = gameService.findById(id);
+			if (game == null) {
+				res.setStatus(404);
+				
+			} else {
+				gameStaff = game.getStaff();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+		return gameStaff;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET Game Staff
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/staff")
+	public List<Staff> getGameStaff(
+		@PathVariable int id
+	) {
+		return staffService.getStaffForGameById(id);
 	}
 }
