@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
-import com.skilldistillery.mygamelist.entities.Tag;
 
 public interface GameRepository extends JpaRepository<Game, Integer> {
 	@Query("SELECT DISTINCT gc.game FROM GameCompany gc WHERE gc.game.id = :id")

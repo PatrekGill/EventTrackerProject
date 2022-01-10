@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.Tag;
-import com.skilldistillery.mygamelist.services.GameService;
 import com.skilldistillery.mygamelist.services.TagService;
 
 @RestController
 @RequestMapping("api")
 public class TagController {
-	@Autowired
-	private GameService gameService;
 	@Autowired
 	private TagService tagService;
 
