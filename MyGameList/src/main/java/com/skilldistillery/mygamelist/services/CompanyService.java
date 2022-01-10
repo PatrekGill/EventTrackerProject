@@ -5,6 +5,7 @@ import java.util.List;
 import com.skilldistillery.mygamelist.entities.Company;
 
 public interface CompanyService {
-	List<Company> getAllCompanies();
-	Company getCompanyById(int id);
+	List<Company> findAll();
+	List<Company> findByNameLike(String name);
+	Company findById(int id);
 }

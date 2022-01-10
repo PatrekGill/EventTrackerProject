@@ -44,7 +44,6 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private List<GameStaff> staff;
     
-    @JsonIgnore
     @ManyToMany(mappedBy="games")
     private List<Tag> tags;
     

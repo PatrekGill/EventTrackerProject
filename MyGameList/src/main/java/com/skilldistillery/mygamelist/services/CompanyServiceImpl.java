@@ -17,15 +17,25 @@ public class CompanyServiceImpl implements CompanyService {
 	private OptionalRetriever<Company> companyRetriever;
 	
 	@Override
-	public List<Company> getAllCompanies() {
+	public List<Company> findAll() {
 		return companyRepo.findAll();
 	}
 
 	@Override
-	public Company getCompanyById(int id) {
+	public Company findById(int id) {
 		return companyRetriever.get(
 			companyRepo.findById(id)
 		);
+	}
+
+	@Override
+	public List<Company> findByNameLike(String name) {
+		List<Company> companies = null;
+		if (name != null) {
+			companies = companyRepo.findByNameLike("%" + name + "%");
+		}
+		
+		return companies;
 	}
 
 }

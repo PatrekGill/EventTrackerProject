@@ -18,15 +18,25 @@ public class GameServiceImpl implements GameService {
 	private OptionalRetriever<Game> gameRetriever;
 	
 	@Override
-	public List<Game> getAllGames() {
+	public List<Game> findAll() {
 		return gameRepo.findAll();
 	}
-
+	
 	@Override
-	public Game getGameById(int id) {
+	public Game findById(int id) {
 		return gameRetriever.get(
 			gameRepo.findById(id)
 		);
+	}
+	
+	@Override
+	public List<Game> getGamesByCompany(int id) {
+		return gameRepo.queryByGameId(id);
+	}
+
+	@Override
+	public List<Company> getCompaniesByGame(int id) {
+		return gameRepo.queryByCompanyId(id);
 	}
 
 }
