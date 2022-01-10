@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
+import com.skilldistillery.mygamelist.entities.GameComment;
 import com.skilldistillery.mygamelist.entities.GameCompany;
 import com.skilldistillery.mygamelist.entities.GameRelation;
 import com.skilldistillery.mygamelist.entities.GameStaff;
@@ -167,6 +168,16 @@ public class GameController {
 		}
 		
 		return gameStaff;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET Game Comments
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/comments")
+	public List<GameComment> getAllCommentsOnGame(
+		@PathVariable int id
+	) {
+		return gameService.getNonReplyCommentsOnGame(id);
 	}
 	
 	/* ----------------------------------------------------------------------------

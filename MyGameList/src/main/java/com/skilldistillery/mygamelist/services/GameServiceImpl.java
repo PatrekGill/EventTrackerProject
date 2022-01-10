@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.mygamelist.OptionalRetriever;
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
+import com.skilldistillery.mygamelist.entities.GameComment;
 import com.skilldistillery.mygamelist.repositories.GameRepository;
 
 @Service
@@ -37,6 +38,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Company> getCompaniesByGame(int gameID) {
 		return gameRepo.getCompaniesForGameId(gameID);
+	}
+
+	@Override
+	public List<GameComment> getNonReplyCommentsOnGame(int id) {
+		return gameRepo.getVisibleAndNonReplyingCommentsOnGameById(id);
 	}
 
 }
