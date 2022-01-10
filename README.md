@@ -46,10 +46,8 @@
 | List<Staff>        | GET         | /api/staff                                     |                                                 | List of all                                          |
 | Staff              | GET         | /api/staff/{id}                                |                                                 | Retrieve                                             |
 | List<Game>         | GET         | /api/staff/{id}/games                          |                                                 | List of games by staff                               |
-|                    | GET         | /api/                                          |                                                 |                                                      |
-|                    | GET         | /api/                                          |                                                 |                                                      |
-|                    |             | /api/                                          |                                                 |                                                      |
-|                    |             | /api/                                          |                                                 |                                                      |
+| List<Status>       | GET         | /api/status                                    |                                                 | List of all                                          |
+| Status             | GET         | /api/status/{id}                               |                                                 | Retrieve                                             |
 
 ## Technologies Used
 Spring MVC, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postman, Java 8, Gradle
