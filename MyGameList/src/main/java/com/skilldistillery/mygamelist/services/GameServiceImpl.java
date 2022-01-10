@@ -70,8 +70,18 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		try {
+			gameRepo.deleteById(id);
+			if (!existsById(id)) {
+				deleted = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return deleted;
 	}
 	
 	
