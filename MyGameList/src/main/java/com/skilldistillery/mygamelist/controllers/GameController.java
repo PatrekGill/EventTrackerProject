@@ -16,6 +16,7 @@ import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.GameComment;
 import com.skilldistillery.mygamelist.entities.GameCompany;
 import com.skilldistillery.mygamelist.entities.GameRelation;
+import com.skilldistillery.mygamelist.entities.GameRelease;
 import com.skilldistillery.mygamelist.entities.GameStaff;
 import com.skilldistillery.mygamelist.entities.Platform;
 import com.skilldistillery.mygamelist.entities.Staff;
@@ -168,6 +169,33 @@ public class GameController {
 		}
 		
 		return gameStaff;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET Game Releases With platforms
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/releases")
+	public List<GameRelease> getGameReleasesWithPlatforms(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		List<GameRelease> gameReleases = new ArrayList<>();
+		try {
+			Game game = gameService.findById(id);
+			if (game == null) {
+				res.setStatus(404);
+				
+			} else {
+				gameReleases = game.getReleases();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+		return gameReleases;
 	}
 	
 	/* ----------------------------------------------------------------------------
