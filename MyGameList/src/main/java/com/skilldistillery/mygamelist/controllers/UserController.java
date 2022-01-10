@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.mygamelist.entities.GameList;
 import com.skilldistillery.mygamelist.entities.User;
 import com.skilldistillery.mygamelist.services.UserService;
 
@@ -28,7 +29,7 @@ public class UserController {
 	}
 	
 	/* ----------------------------------------------------------------------------
-		GET game by id
+		GET user by id
 	---------------------------------------------------------------------------- */
 	@GetMapping("users/{id}")
 	public User getUserById(
@@ -48,5 +49,32 @@ public class UserController {
 		}
 		
 		return user;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET user's GameLists by id
+	---------------------------------------------------------------------------- */
+	@GetMapping("users/{id}/gamelists")
+	public List<GameList> getUserGameListsById(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		List<GameList> gameLists = null;
+		try {
+			User user = userService.findById(id);
+			if (user == null) {
+				res.setStatus(404);
+				
+			} else {
+				gameLists = user.getGameLists();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+		return gameLists;
 	}
 }
