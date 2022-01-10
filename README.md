@@ -62,3 +62,6 @@ Spring MVC, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postma
 ## Lessons Learned (at the moment)
 - Start smaller with service objects
 I would've helped me greatly to have started on smaller object to fully-implement CRUD operations as a template, rather then spending my time with completing so much of the relationships with the main table `Game`.
+
+## Database Schema
+![Database Schema](https://drive.google.com/uc?export=view&id=1NkOGlh_AphY1Ze4anoymngzl9j3nBTPr)
