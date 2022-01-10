@@ -1,0 +1,79 @@
+package com.skilldistillery.mygamelist.controllers;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.skilldistillery.mygamelist.entities.Game;
+import com.skilldistillery.mygamelist.services.GameService;
+
+@RestController
+@RequestMapping("api")
+public class GameModifyController {
+	@Autowired
+	private GameService gameService;
+	
+	/* ----------------------------------------------------------------------------
+		POST create new game
+	---------------------------------------------------------------------------- */
+	@PostMapping("games")
+	public Game createGame(
+		@RequestBody Game game,
+		HttpServletResponse res,
+		HttpServletRequest req
+	) {
+		
+		try {
+			game = gameService.create(game);
+			res.setStatus(201);
+			
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(game.getId());
+			res.setHeader("Location",url.toString());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Invalid game sent to create");
+			res.setStatus(400);
+			game = null;
+			
+		}
+		
+		return game;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		PUT update game
+	---------------------------------------------------------------------------- */
+	@PutMapping("games/{id}")
+	public Game updateGame(
+		@PathVariable int id,
+		@RequestBody Game game,
+		HttpServletResponse res,
+		HttpServletRequest req	
+	) {
+		try {
+			game = gameService.update(id, game);
+			if (game == null) {
+				res.setStatus(404);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Invalid game sent to update");
+			res.setStatus(400);
+			game = null;
+			
+		}
+		
+		return game;
+	}
+	
+}

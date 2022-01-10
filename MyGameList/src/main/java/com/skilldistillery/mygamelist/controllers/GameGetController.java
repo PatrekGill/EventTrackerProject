@@ -20,19 +20,22 @@ import com.skilldistillery.mygamelist.entities.GameRelease;
 import com.skilldistillery.mygamelist.entities.GameStaff;
 import com.skilldistillery.mygamelist.entities.Platform;
 import com.skilldistillery.mygamelist.entities.Staff;
+import com.skilldistillery.mygamelist.services.GameCommentService;
 import com.skilldistillery.mygamelist.services.GameService;
 import com.skilldistillery.mygamelist.services.PlatformService;
 import com.skilldistillery.mygamelist.services.StaffService;
 
 @RestController
 @RequestMapping("api")
-public class GameController {
+public class GameGetController {
 	@Autowired
 	private GameService gameService;
 	@Autowired
 	private PlatformService platformService;
 	@Autowired
 	private StaffService staffService;
+	@Autowired
+	private GameCommentService commentService;
 	
 	/* ----------------------------------------------------------------------------
 		GET all games
@@ -205,7 +208,7 @@ public class GameController {
 	public List<GameComment> getAllCommentsOnGame(
 		@PathVariable int id
 	) {
-		return gameService.getNonReplyCommentsOnGame(id);
+		return commentService.getNonReplyCommentsOnGame(id);
 	}
 	
 	/* ----------------------------------------------------------------------------
