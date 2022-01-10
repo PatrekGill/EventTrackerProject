@@ -1,6 +1,5 @@
 package com.skilldistillery.mygamelist.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -54,17 +53,14 @@ public class GameGetController {
 		HttpServletResponse res
 	) {
 		Game game = null;
-		try {
+		if (gameService.existsById(id)) {
 			game = gameService.findById(id);
-			if (game == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
-		
+
 		return game;
 	}
 	
@@ -78,19 +74,12 @@ public class GameGetController {
 		HttpServletResponse res
 	) {
 		List<GameCompany> games = null;
-		try {
-			Game company = gameService.findById(id);
-			if (company == null) {
-				res.setStatus(404);
-				
-			} else {
-				games = company.getCompanies();
-				
-			}
+		if (gameService.existsById(id)) {
+			Game game = gameService.findById(id);
+			games = game.getCompanies();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
 			
 		}
 		
@@ -128,20 +117,14 @@ public class GameGetController {
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		List<GameRelation> relations = new ArrayList<>();
-		try {
+		List<GameRelation> relations = null;
+		if (gameService.existsById(id)) {
 			Game game = gameService.findById(id);
-			if (game == null) {
-				res.setStatus(404);
-				
-			} else {
-				relations = game.getRelations();
-				
-			}
+			relations = game.getRelations();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return relations;
@@ -155,20 +138,14 @@ public class GameGetController {
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		List<GameStaff> gameStaff = new ArrayList<>();
-		try {
+		List<GameStaff> gameStaff = null;
+		if (gameService.existsById(id)) {
 			Game game = gameService.findById(id);
-			if (game == null) {
-				res.setStatus(404);
-				
-			} else {
-				gameStaff = game.getStaff();
-				
-			}
+			gameStaff = game.getStaff();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return gameStaff;
@@ -182,20 +159,14 @@ public class GameGetController {
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		List<GameRelease> gameReleases = new ArrayList<>();
-		try {
+		List<GameRelease> gameReleases = null;
+		if (gameService.existsById(id)) {
 			Game game = gameService.findById(id);
-			if (game == null) {
-				res.setStatus(404);
-				
-			} else {
-				gameReleases = game.getReleases();
-				
-			}
+			gameReleases = game.getReleases();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return gameReleases;

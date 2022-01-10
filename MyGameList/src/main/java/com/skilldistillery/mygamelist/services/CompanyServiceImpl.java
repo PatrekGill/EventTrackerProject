@@ -38,4 +38,9 @@ public class CompanyServiceImpl implements CompanyService {
 		return companies;
 	}
 
+	@Override
+	public boolean existsById(int id) {
+		return companyRepo.existsById(id);
+	}
+
 }

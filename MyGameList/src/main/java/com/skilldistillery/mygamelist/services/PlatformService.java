@@ -9,5 +9,6 @@ public interface PlatformService {
 	List<Platform> findAll();
 	List<Platform> getPlatformsForGame(int gameID);
 	List<Game> getGamesForPlatform(int platformID);
+	boolean existsById(int id);
 	Platform findById(int id);
 }

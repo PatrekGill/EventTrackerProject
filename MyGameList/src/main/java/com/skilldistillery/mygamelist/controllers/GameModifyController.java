@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,8 +57,7 @@ public class GameModifyController {
 	public Game updateGame(
 		@PathVariable int id,
 		@RequestBody Game game,
-		HttpServletResponse res,
-		HttpServletRequest req	
+		HttpServletResponse res
 	) {
 		try {
 			game = gameService.update(id, game);
@@ -74,6 +74,30 @@ public class GameModifyController {
 		}
 		
 		return game;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		DELETE game
+	---------------------------------------------------------------------------- */
+	@DeleteMapping("games/{id}")
+	public void deleteGame(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		if (gameService.existsById(id)) {
+			if (gameService.delete(id)) {
+				res.setStatus(204);
+				
+			} else {
+				res.setStatus(409);
+				
+			}
+			
+		} else {
+			res.setStatus(404);
+			
+		}
+		
 	}
 	
 }

@@ -8,7 +8,7 @@ import com.skilldistillery.mygamelist.entities.Staff;
 public interface StaffService {
 	List<Staff> findAll();
 	Staff findById(int id);
-	
+	boolean existsById(int id);
 	List<Staff> getStaffForGameById(int gameId);
 	List<Game> getGamesForStaffById(int staffId);
 }

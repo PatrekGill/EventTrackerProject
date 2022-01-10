@@ -37,15 +37,12 @@ public class PlatformController {
 		HttpServletResponse res
 	) {
 		Platform platform = null;
-		try {
+		if (platformService.existsById(id)) {
 			platform = platformService.findById(id);
-			if (platform == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return platform;

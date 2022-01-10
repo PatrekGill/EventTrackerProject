@@ -10,4 +10,5 @@ public interface TagService {
 	List<Tag> findByNameLike(String name);
 	List<Game> getGamesByTagId(int id);
 	Tag findById(int id);
+	boolean existsById(int id);
 }

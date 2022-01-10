@@ -39,6 +39,7 @@ public class GameComment {
     @JoinColumn(name="user_id")
     private User user;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="in_reply_to")
     private GameComment replyToComment;

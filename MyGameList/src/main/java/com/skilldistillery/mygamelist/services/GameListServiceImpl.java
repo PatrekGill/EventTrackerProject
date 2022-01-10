@@ -28,4 +28,9 @@ public class GameListServiceImpl implements GameListService {
 		);
 	}
 	
+	@Override
+	public boolean existsById(int id) {
+		return glRepo.existsById(id);
+	}
+	
 }

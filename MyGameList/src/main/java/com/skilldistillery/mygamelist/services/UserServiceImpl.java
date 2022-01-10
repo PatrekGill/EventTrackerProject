@@ -29,5 +29,10 @@ public class UserServiceImpl implements UserService {
 				
 	}
 	
+	@Override
+	public boolean existsById(int id) {
+		return userRepo.existsById(id);
+	}
+	
 	
 }

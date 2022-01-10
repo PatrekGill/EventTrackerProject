@@ -49,4 +49,9 @@ public class TagServiceImpl implements TagService {
 		
 		return games;
 	}
+	
+	@Override
+	public boolean existsById(int id) {
+		return tagRepo.existsById(id);
+	}
 }

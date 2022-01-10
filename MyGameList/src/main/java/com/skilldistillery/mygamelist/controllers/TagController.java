@@ -37,15 +37,12 @@ public class TagController {
 		HttpServletResponse res
 	) {
 		Tag tag = null;
-		try {
+		if (tagService.existsById(id)) {
 			tag = tagService.findById(id);
-			if (tag == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return tag;

@@ -36,15 +36,12 @@ public class StatusController {
 		HttpServletResponse res
 	) {
 		Status status = null;
-		try {
+		if (statusService.existsById(id)) {
 			status = statusService.findById(id);
-			if (status == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return status;

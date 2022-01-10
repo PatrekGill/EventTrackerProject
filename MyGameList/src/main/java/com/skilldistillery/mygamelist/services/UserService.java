@@ -7,4 +7,5 @@ import com.skilldistillery.mygamelist.entities.User;
 public interface UserService {
 	List<User> findAll();
 	User findById(int id);
+	boolean existsById(int id);
 }

@@ -39,5 +39,8 @@ public class StaffServiceImpl implements StaffService {
 		return staffRepo.getGamesForStaffById(staffId);
 	}
 	
-	
+	@Override
+	public boolean existsById(int id) {
+		return staffRepo.existsById(id);
+	}
 }

@@ -62,6 +62,17 @@ public class GameServiceImpl implements GameService {
 		
 		return managedGame;
 	}
+
+	@Override
+	public boolean existsById(int id) {
+		return gameRepo.existsById(id);
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

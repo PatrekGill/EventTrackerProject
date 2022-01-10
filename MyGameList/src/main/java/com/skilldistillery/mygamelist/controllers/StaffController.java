@@ -37,15 +37,12 @@ public class StaffController {
 		HttpServletResponse res
 	) {
 		Staff staff = null;
-		try {
+		if (staffService.existsById(id)) {
 			staff = staffService.findById(id);
-			if (staff == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return staff;

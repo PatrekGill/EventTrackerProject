@@ -28,5 +28,8 @@ public class StatusServiceImpl implements StatusService {
 		);
 	}
 	
-	
+	@Override
+	public boolean existsById(int id) {
+		return statusRepo.existsById(id);
+	}
 }

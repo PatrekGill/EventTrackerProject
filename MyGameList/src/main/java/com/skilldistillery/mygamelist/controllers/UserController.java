@@ -37,15 +37,12 @@ public class UserController {
 		HttpServletResponse res
 	) {
 		User user = null;
-		try {
+		if (userService.existsById(id)) {
 			user = userService.findById(id);
-			if (user == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return user;
@@ -60,19 +57,13 @@ public class UserController {
 		HttpServletResponse res
 	) {
 		List<GameList> gameLists = null;
-		try {
+		if (userService.existsById(id)) {
 			User user = userService.findById(id);
-			if (user == null) {
-				res.setStatus(404);
-				
-			} else {
-				gameLists = user.getGameLists();
-				
-			}
+			gameLists = user.getGameLists();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return gameLists;

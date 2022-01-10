@@ -39,15 +39,12 @@ public class GameListController {
 		HttpServletResponse res
 	) {
 		GameList gameList = null;
-		try {
+		if (gameListService.existsById(id)) {
 			gameList = gameListService.findById(id);
-			if (gameList == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return gameList;
@@ -63,19 +60,13 @@ public class GameListController {
 		HttpServletResponse res
 	) {
 		List<Game> games = new ArrayList<>();
-		try {
+		if (gameListService.existsById(id)) {
 			GameList gameList = gameListService.findById(id);
-			if (gameList == null) {
-				res.setStatus(404);
-				
-			} else {
-				games = gameList.getGames();
-				
-			}
+			games = gameList.getGames();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return games;

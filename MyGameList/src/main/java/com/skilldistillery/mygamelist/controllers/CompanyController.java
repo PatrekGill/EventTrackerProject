@@ -42,15 +42,12 @@ public class CompanyController {
 		HttpServletResponse res
 	) {
 		Company company = null;
-		try {
+		if (companyService.existsById(id)) {
 			company = companyService.findById(id);
-			if (company == null) {
-				res.setStatus(404);
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
+			
 		}
 		
 		return company;
@@ -66,19 +63,12 @@ public class CompanyController {
 		HttpServletResponse res
 	) {
 		List<GameCompany> games = null;
-		try {
+		if (companyService.existsById(id)) {
 			Company company = companyService.findById(id);
-			if (company == null) {
-				res.setStatus(404);
-				
-			} else {
-				games = company.getGames();
-				
-			}
+			games = company.getGames();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
+		} else {
+			res.setStatus(404);
 			
 		}
 		
@@ -91,20 +81,9 @@ public class CompanyController {
 	---------------------------------------------------------------------------- */
 	@GetMapping("companies/{id}/games")
 	public List<Game> getCompanyGamesById(
-		@PathVariable int id,
-		HttpServletResponse res
+		@PathVariable int id
 	) {
-		List<Game> games = null;
-		try {
-			games = gameService.getGamesByCompany(id);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
-			
-		}
-		
-		return games;
+		return gameService.getGamesByCompany(id);
 	}
 
 	

@@ -39,4 +39,9 @@ public class PlatformServiceImpl implements PlatformService {
 		return platformRepo.getGamesForPlatformById(gameID);
 	}
 	
+	@Override
+	public boolean existsById(int id) {
+		return platformRepo.existsById(id);
+	}
+	
 }
