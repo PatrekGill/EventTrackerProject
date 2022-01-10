@@ -15,5 +15,13 @@ public interface GameCommentRepository extends JpaRepository<GameComment, Intege
 				+ "AND gc.visible = true "
 				+ "AND gc.replyToComment IS NULL")
 	List<GameComment> getVisibleAndNonReplyingCommentsOnGameById(@Param("id") int id);
+	
+	@Query("SELECT gc "
+		+ "FROM GameComment gc "
+		+ "WHERE gc.replyToComment IS NOT NULL "
+			+ "AND gc.replyToComment.id = :id "
+			+ "AND gc.visible = true"
+	)
+	List<GameComment> getVisibleCommentReplies(@Param("id") int id);
 
 }

@@ -1,5 +1,7 @@
 package com.skilldistillery.mygamelist.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,6 +42,26 @@ public class GameCommentController {
 		}
 		
 		return comment;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		GET comment replies
+	---------------------------------------------------------------------------- */
+	@GetMapping("GameComment/{id}/replies")
+	public List<GameComment> getCommentRepliesById(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		List<GameComment> replies = null;
+		if (commentService.existsById(id)) {
+			replies = commentService.getCommentReplies(id);
+			
+		} else {
+			res.setStatus(404);
+			
+		}
+		
+		return replies;
 	}
 	
 	/* ----------------------------------------------------------------------------
@@ -119,6 +141,45 @@ public class GameCommentController {
 			comment = null;
 			
 		}
+		
+		return comment;
+	}
+	
+	/* ----------------------------------------------------------------------------
+		POST reply to comment
+	---------------------------------------------------------------------------- */
+	@PostMapping("GameComment/{id}")
+	public GameComment replyToComment(
+		@PathVariable int id,
+		@RequestBody GameComment comment,
+		HttpServletResponse res,
+		HttpServletRequest req
+	) {
+		try {
+			if (commentService.existsById(id)) {
+				GameComment repliedToComment = commentService.findById(id);
+				comment.setReplyToComment(repliedToComment);
+				
+				comment = commentService.create(comment);
+				res.setStatus(201);
+				
+				StringBuffer url = req.getRequestURL();
+				url.append("/").append(comment.getId());
+				res.setHeader("Location",url.toString());
+				
+			} else {
+				res.setStatus(404);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Invalid comment sent to create");
+			res.setStatus(400);
+			comment = null;
+			
+		}
+		
 		
 		return comment;
 	}

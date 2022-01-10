@@ -8,6 +8,7 @@ public interface GameCommentService {
 	GameComment findById(int id);
 	boolean existsById(int id);
 	List<GameComment> getNonReplyCommentsOnGame(int id);
+	List<GameComment> getCommentReplies(int id);
 	GameComment create(GameComment comment);
 	GameComment update(int id, GameComment comment);
 	boolean delete(int id);

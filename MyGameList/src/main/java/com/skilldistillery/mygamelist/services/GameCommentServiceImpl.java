@@ -43,6 +43,7 @@ public class GameCommentServiceImpl implements GameCommentService {
 		GameComment managed = findById(id);
 		if (managed != null) {
 			managed.setText(comment.getText());
+			commentRepo.saveAndFlush(managed);
 		}
 		
 		return managed;
@@ -69,8 +70,14 @@ public class GameCommentServiceImpl implements GameCommentService {
 			}
 			
 			deleted = true;
+			commentRepo.saveAndFlush(comment);
 		}
 		
 		return deleted;
+	}
+
+	@Override
+	public List<GameComment> getCommentReplies(int id) {
+		return commentRepo.getVisibleCommentReplies(id);
 	}
 }
