@@ -2,10 +2,13 @@
 MyGameList
 
 ## Overview
-MyGameList is to be a simple game-tracker/database for videogames. At the moment, it is entirely a REST API with limited functionality mostly geared towards queries. The database schema was designed in MySQL Workbench.
+MyGameList is to be a simple game-tracker/database for videogames. At the moment, it is entirely a REST API with limited functionality mostly geared towards queries. The database schema was designed in MySQL Workbench. The entity objects are completed and have corresponding unit tests.
+<br>
+<br>
+The backend is currently not very well implemented in terms of the service objects and controllers. Some organization will be done in the future.
 
 ### REST API
-The only current full CRUD operations are available on Game and GameComment. POST methods create, PUT update, GETs retrieve, and DELETE will delete. The reference sheet below includes currently available mappings.
+The only current full CRUD operations are available on `Game` and `GameComment`. POST methods create, PUT update, GETs retrieve, and DELETE will delete. The reference sheet below includes currently available mappings, with more to come. Theses were tested using manual Postman calls locally.
 
 ### HTML/JavaScript Front End
 
@@ -61,7 +64,7 @@ Spring MVC, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postma
 
 ## Lessons Learned (at the moment)
 - Start smaller with service objects
-I would've helped me greatly to have started on smaller object to fully-implement CRUD operations as a template, rather then spending my time with completing so much of the relationships with the main table `Game`.
+It would've helped me greatly to have started on smaller object to fully-implement CRUD operations as a template, rather then spending my time with completing so much of the relationships with the main table `Game`.
 
 ## Database Schema
 ![Database Schema](https://drive.google.com/uc?export=view&id=1NkOGlh_AphY1Ze4anoymngzl9j3nBTPr)
