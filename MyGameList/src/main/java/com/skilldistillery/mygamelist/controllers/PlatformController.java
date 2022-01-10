@@ -51,4 +51,16 @@ public class PlatformController {
 		return platform;
 	}
 	
+	
+	/* ----------------------------------------------------------------------------
+		GET Games For Platform
+	---------------------------------------------------------------------------- */
+	@GetMapping("platforms/{id}/games")
+	public List<Game> getGamesForPlatform(
+		@PathVariable int id,
+		HttpServletResponse res
+	) {
+		return platformService.getGamesForPlatform(id);
+	}
+	
 }

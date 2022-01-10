@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.GameCompany;
+import com.skilldistillery.mygamelist.entities.Platform;
 import com.skilldistillery.mygamelist.services.GameService;
+import com.skilldistillery.mygamelist.services.PlatformService;
 
 @RestController
 @RequestMapping("api")
 public class GameController {
 	@Autowired
 	private GameService gameService;
+	@Autowired
+	private PlatformService platformService;
 	
 	/* ----------------------------------------------------------------------------
 		GET all games
@@ -87,19 +91,19 @@ public class GameController {
 	---------------------------------------------------------------------------- */
 	@GetMapping("games/{id}/companies")
 	public List<Company> getGameCompaniesById(
-		@PathVariable int id,
-		HttpServletResponse res
+		@PathVariable int id
 	) {
-		List<Company> companies = null;
-		try {
-			companies = gameService.getCompaniesByGame(id);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
-			
-		}
-		
-		return companies;
+		return gameService.getCompaniesByGame(id);
+	}
+	
+	
+	/* ----------------------------------------------------------------------------
+		GET Platforms For game
+	---------------------------------------------------------------------------- */
+	@GetMapping("games/{id}/platforms")
+	public List<Platform> getPlatformsForGame(
+		@PathVariable int id
+	) {
+		return platformService.getPlatformsForGame(id);
 	}
 }

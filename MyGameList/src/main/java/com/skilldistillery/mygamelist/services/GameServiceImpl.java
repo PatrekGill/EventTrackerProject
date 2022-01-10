@@ -30,13 +30,13 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	@Override
-	public List<Game> getGamesByCompany(int id) {
-		return gameRepo.queryByGameId(id);
+	public List<Game> getGamesByCompany(int companyID) {
+		return gameRepo.getGamesForCompanyId(companyID);
 	}
 
 	@Override
-	public List<Company> getCompaniesByGame(int id) {
-		return gameRepo.queryByCompanyId(id);
+	public List<Company> getCompaniesByGame(int gameID) {
+		return gameRepo.getCompaniesForGameId(gameID);
 	}
 
 }
