@@ -11,7 +11,7 @@
 ## REST API Reference
 | Return Type        | HTTP Method | URI                                            | Request Body                                    | Purpose                                              |
 |--------------------|-------------|------------------------------------------------|-------------------------------------------------|------------------------------------------------------|
-| List<Company>      | GET         | /api/companies                                 |                                                 | List of all                                          |
+| List\<Company\>      | GET         | /api/companies                                 |                                                 | List of all                                          |
 | Company            | GET         | /api/companies/{id}                            |                                                 | Retrieve                                             |
 | List<GameCompany>  | GET         | /api/companies/{id}/gameroles                  |                                                 | List of company games with roles                     |
 | List<Game>         | GET         | /api/companies/{id}/games                      |                                                 | List of company games without roles                  |
