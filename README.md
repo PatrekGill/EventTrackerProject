@@ -3,8 +3,8 @@ MyGameList
 
 ## Overview
 MyGameList is to be a simple game-tracker/database for videogames. At the moment, it is entirely a REST API with limited functionality mostly geared towards queries. The database schema was designed in MySQL Workbench. The entity objects are completed and have corresponding unit tests.
-\<br\>
-\<br\>
+<br />
+<br />
 The backend is currently not very well implemented in terms of the service objects and controllers. Some organization will be done in the future.
 
 ### REST API
