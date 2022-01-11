@@ -57,7 +57,7 @@ public class CompanyController {
 	/* ----------------------------------------------------------------------------
 		GET company games and roles by ID
 	---------------------------------------------------------------------------- */
-	@GetMapping("companies/{id}/gameroles")
+	@GetMapping("companies/{id}/games/roles")
 	public List<GameCompany> getCompanyGameRoles(
 		@PathVariable int id,
 		HttpServletResponse res

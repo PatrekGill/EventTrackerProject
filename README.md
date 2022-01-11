@@ -19,7 +19,7 @@ The only current full CRUD operations are available on `Game` and `GameComment`.
 |--------------------|-------------|------------------------------------------------|-------------------------------------------------|------------------------------------------------------|
 | List\<Company\>      | GET         | /api/companies                                 |                                                 | List of all                                          |
 | Company            | GET         | /api/companies/{id}                            |                                                 | Retrieve                                             |
-| List\<GameCompany\>  | GET         | /api/companies/{id}/gameroles                  |                                                 | List of company games with roles                     |
+| List\<GameCompany\>  | GET         | /api/companies/{id}/games/roles                  |                                                 | List of company games with roles                     |
 | List\<Game\>         | GET         | /api/companies/{id}/games                      |                                                 | List of company games without roles                  |
 | List\<Company\>      | GET         | /api/companies/search/{name}                   |                                                 | Search by name                                       |
 | List\<Company\>      | GET         | /api/companies/search/{name}/{numberOfEntries} |                                                 | Search by name, limit return                         |
@@ -32,7 +32,7 @@ The only current full CRUD operations are available on `Game` and `GameComment`.
 | void               | DELETE      | /api/GameComment                               |                                                 | Delete comment                                       |
 | List\<Game\>         | GET         | /api/games                                     |                                                 | List of all                                          |
 | Game               | GET         | /api/games/{id}                                |                                                 | Retrieve                                             |
-| List\<GameCompany\>  | GET         | /api/games/{id}/companyroles                   |                                                 | List of companies for game with roles                |
+| List\<GameCompany\>  | GET         | /api/games/{id}/companies/roles                   |                                                 | List of companies for game with roles                |
 | List\<Company\>      | GET         | /api/games/{id}/companies                      |                                                 | List of companies for game without roles             |
 | List\<Platform\>     | GET         | /api/games/{id}/platforms                      |                                                 | List of platforms for game                           |
 | List\<GameRelation\> | GET         | /api/games/{id}/relationships                  |                                                 | List of games and their relation to provided game id |
