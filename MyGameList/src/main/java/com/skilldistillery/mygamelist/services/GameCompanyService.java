@@ -8,6 +8,6 @@ public interface GameCompanyService {
 	GameCompany findById(GameCompanyId id);
 	boolean existsById(GameCompanyId id);
 	GameCompany create(GameCompany gc);
-	GameCompany update(GameCompany gc);
-	boolean delete(GameCompany gc);
+	GameCompany update(GameCompanyId id,GameCompany gc);
+	boolean delete(GameCompanyId id);
 }

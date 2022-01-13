@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.mygamelist.OptionalRetriever;
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 import com.skilldistillery.mygamelist.entities.GameCompany;
-import com.skilldistillery.mygamelist.entities.GameList;
 import com.skilldistillery.mygamelist.repositories.GameCompanyRepository;
 
 @Service
@@ -26,31 +25,43 @@ public class GameCompanyServiceImpl implements GameCompanyService {
 		return gameCompanyRetriever.get(
 			gcRepo.findById(id)
 		);
-				
-	}
-
-	@Override
-	public GameCompany create(GameCompany gc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GameCompany update(GameCompany gc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean delete(GameCompany gc) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
 	public boolean existsById(GameCompanyId id) {
 		return gcRepo.existsById(id);
 	}
+
+	@Override
+	public GameCompany create(GameCompany gc) {
+		return gcRepo.saveAndFlush(gc);
+	}
+
+	@Override
+	public GameCompany update(GameCompanyId id,GameCompany gc) {
+		GameCompany managed = findById(id);
+		if (managed != null) {
+			managed.setRole(gc.getRole());
+		}
+		
+		return managed;
+	}
+
+	@Override
+	public boolean delete(GameCompanyId id) {
+		gcRepo.deleteById(id);
+		boolean deleted = false;
+		if (!gcRepo.existsById(id)) {
+			deleted = true;
+			
+		} else {
+			deleted = false;
+			
+		}
+		
+		return deleted;
+	}
+
 
 
 }
