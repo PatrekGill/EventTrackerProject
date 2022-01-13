@@ -1,5 +1,6 @@
 package com.skilldistillery.mygamelist.controllers.company;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,44 +23,31 @@ public class CompanySearchController {
 	/* ----------------------------------------------------------------------------
 		GET  companies by name
 	---------------------------------------------------------------------------- */
-	@GetMapping("companies/search/{name}")
+	@GetMapping(path = {
+		"companies/search/{name}/{numberOfEntries}",
+		"companies/search/{name}"
+	})
 	public List<Company> getCompaniesByName(
 		@PathVariable String name,
+		@PathVariable Integer numberOfEntries,
 		HttpServletResponse res
 	) {
-		List<Company> companies = null;
+		List<Company> companies = new ArrayList<>();
 		try {
 			companies = companyService.findByNameLike(name);
 			if (companies == null) {
 				res.setStatus(400);
+				
+			} else {
+				int size = companies.size();
+				if (numberOfEntries > size) {
+					numberOfEntries = size;
+				}
+				
+				companies = companies.subList(0, numberOfEntries);
+				
 			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
-			
-		}
-		
-		return companies;
-	}
-	
-	@GetMapping("companies/search/{name}/{numberOfEntries}")
-	public List<Company> getCompaniesByName(
-		@PathVariable String name,
-		@PathVariable int numberOfEntries,
-		HttpServletResponse res
-	) {
-		List<Company> companies = null;
-		try {
-			
-			companies = companyService.findByNameLike(name);
-			int size = companies.size();
-			
-			if (numberOfEntries > size) {
-				numberOfEntries = size;
-			}
-			
-			companies = companies.subList(0, numberOfEntries);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

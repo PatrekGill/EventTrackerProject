@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.usergame;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import com.skilldistillery.mygamelist.services.UserGameService;
 
 @RestController
 @RequestMapping("api")
-public class UserGameController {
+public class UserGameGetController {
 	@Autowired
 	private UserGameService userGameService;
 	

@@ -18,7 +18,7 @@ import com.skilldistillery.mygamelist.services.GameService;
 
 @RestController
 @RequestMapping("api")
-public class CompanyController {
+public class CompanyGetController {
 	@Autowired
 	private CompanyService companyService;
 	@Autowired

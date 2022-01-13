@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.platform;
 
 import java.util.List;
 
@@ -11,51 +11,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Game;
-import com.skilldistillery.mygamelist.entities.Staff;
-import com.skilldistillery.mygamelist.services.StaffService;
+import com.skilldistillery.mygamelist.entities.Platform;
+import com.skilldistillery.mygamelist.services.PlatformService;
 
 @RestController
 @RequestMapping("api")
-public class StaffController {
+public class PlatformGetController {
 	@Autowired
-	private StaffService staffService;
-	
+	private PlatformService platformService;
+
 	/* ----------------------------------------------------------------------------
-		GET all staff
+		GET all Platforms
 	---------------------------------------------------------------------------- */
-	@GetMapping("staff")
-	public List<Staff> index() {
-		return staffService.findAll();
+	@GetMapping("platforms")
+	public List<Platform> index() {
+		return platformService.findAll();
 	}
 	
 	/* ----------------------------------------------------------------------------
-		GET staff by id
+		GET Platform by id
 	---------------------------------------------------------------------------- */
-	@GetMapping("staff/{id}")
-	public Staff getStaffById(
+	@GetMapping("platforms/{id}")
+	public Platform getPlatformById(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		Staff staff = null;
-		if (staffService.existsById(id)) {
-			staff = staffService.findById(id);
+		Platform platform = null;
+		if (platformService.existsById(id)) {
+			platform = platformService.findById(id);
 			
 		} else {
 			res.setStatus(404);
 			
 		}
 		
-		return staff;
+		return platform;
 	}
 	
 	
 	/* ----------------------------------------------------------------------------
-		GET staff games by id
+		GET Games For Platform
 	---------------------------------------------------------------------------- */
-	@GetMapping("staff/{id}/games")
-	public List<Game> getStaffGamesById(
-		@PathVariable int id
+	@GetMapping("platforms/{id}/games")
+	public List<Game> getGamesForPlatform(
+		@PathVariable int id,
+		HttpServletResponse res
 	) {
-		return staffService.getGamesForStaffById(id);
+		return platformService.getGamesForPlatform(id);
 	}
+	
 }

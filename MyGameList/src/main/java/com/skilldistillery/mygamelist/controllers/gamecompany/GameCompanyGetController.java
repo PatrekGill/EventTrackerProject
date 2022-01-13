@@ -21,7 +21,11 @@ public class GameCompanyGetController {
 	/* ----------------------------------------------------------------------------
 		GET all games
 	---------------------------------------------------------------------------- */
-	@GetMapping("game/{gameId}/company/{companyId}")
+	@GetMapping(path={
+			"game/{gameId}/company/{companyId}",
+			"company/{companyId}/game/{gameId}"			
+		}
+	)
 	public GameCompany getByGameIdAndCompanyId(
 		@PathVariable int gameId,
 		@PathVariable int companyId,
