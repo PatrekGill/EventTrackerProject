@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.game;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,64 +10,62 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.GameList;
-import com.skilldistillery.mygamelist.services.GameListService;
+import com.skilldistillery.mygamelist.entities.User;
+import com.skilldistillery.mygamelist.services.UserService;
 
 @RestController
 @RequestMapping("api")
-public class GameListController {
+public class UserGetController {
 	@Autowired
-	private GameListService gameListService;
+	private UserService userService;
 	
 	/* ----------------------------------------------------------------------------
-		GET all gameLists
+		GET all Users
 	---------------------------------------------------------------------------- */
-	@GetMapping("gameLists")
-	public List<GameList> index() {
-		return gameListService.findAll();
+	@GetMapping("users")
+	public List<User> index() {
+		return userService.findAll();
 	}
 	
-	
 	/* ----------------------------------------------------------------------------
-		GET gameList by Id
+		GET user by id
 	---------------------------------------------------------------------------- */
-	@GetMapping("gameLists/{id}")
-	public GameList getGameListById(
+	@GetMapping("users/{id}")
+	public User getUserById(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		GameList gameList = null;
-		if (gameListService.existsById(id)) {
-			gameList = gameListService.findById(id);
+		User user = null;
+		if (userService.existsById(id)) {
+			user = userService.findById(id);
 			
 		} else {
 			res.setStatus(404);
 			
 		}
 		
-		return gameList;
+		return user;
 	}
 	
-	
 	/* ----------------------------------------------------------------------------
-		GET gameList's games by Id
+		GET user's GameLists by id
 	---------------------------------------------------------------------------- */
-	@GetMapping("gameLists/{id}/games")
-	public List<Game> getGamesOnGameList(
+	@GetMapping("users/{id}/gamelists")
+	public List<GameList> getUserGameListsById(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		List<Game> games = new ArrayList<>();
-		if (gameListService.existsById(id)) {
-			GameList gameList = gameListService.findById(id);
-			games = gameList.getGames();
+		List<GameList> gameLists = null;
+		if (userService.existsById(id)) {
+			User user = userService.findById(id);
+			gameLists = user.getGameLists();
 			
 		} else {
 			res.setStatus(404);
 			
 		}
 		
-		return games;
+		return gameLists;
 	}
 }

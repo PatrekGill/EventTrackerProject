@@ -20,6 +20,11 @@ public class GameCompanyId implements Serializable {
 		this.game = game;
 		this.company = company;
 	}
+	public GameCompanyId(int gameId, int companyId) {
+		super();
+		this.game = new Game(gameId);
+		this.company = new Company(companyId);
+	}
 
 	
 	/* ----------------------------------------------------------------------------

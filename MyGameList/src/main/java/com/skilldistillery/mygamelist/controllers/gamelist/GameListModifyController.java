@@ -1,0 +1,5 @@
+package com.skilldistillery.mygamelist.controllers.gamelist;
+
+public class GameListModifyController {
+
+}

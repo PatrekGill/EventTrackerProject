@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.gamecomment;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import com.skilldistillery.mygamelist.services.GameCommentService;
 
 @RestController
 @RequestMapping("api")
-public class GameCommentController {
+public class GameCommentGetController {
 	@Autowired
 	private GameCommentService commentService;
 

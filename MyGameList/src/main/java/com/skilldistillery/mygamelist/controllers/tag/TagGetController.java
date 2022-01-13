@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers;
+package com.skilldistillery.mygamelist.controllers.tag;
 
 import java.util.List;
 
@@ -10,82 +10,87 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
-import com.skilldistillery.mygamelist.entities.GameCompany;
-import com.skilldistillery.mygamelist.services.CompanyService;
-import com.skilldistillery.mygamelist.services.GameService;
+import com.skilldistillery.mygamelist.entities.Tag;
+import com.skilldistillery.mygamelist.services.TagService;
 
 @RestController
 @RequestMapping("api")
-public class CompanyController {
+public class TagGetController {
 	@Autowired
-	private CompanyService companyService;
-	@Autowired
-	private GameService gameService;
-	
+	private TagService tagService;
+
 	/* ----------------------------------------------------------------------------
-		GET all companies
+		GET all tags
 	---------------------------------------------------------------------------- */
-	@GetMapping("companies")
-	public List<Company> index() {
-		return companyService.findAll();
+	@GetMapping("tags")
+	public List<Tag> getAllTags() {
+		return tagService.findAll();
 	}
 	
-	
 	/* ----------------------------------------------------------------------------
-		GET Company by id
+		GET Tag By ID
 	---------------------------------------------------------------------------- */
-	@GetMapping("companies/{id}")
-	public Company getCompanyById(
+	@GetMapping("tags/{id}")
+	public Tag getTagById(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		Company company = null;
-		if (companyService.existsById(id)) {
-			company = companyService.findById(id);
+		Tag tag = null;
+		if (tagService.existsById(id)) {
+			tag = tagService.findById(id);
 			
 		} else {
 			res.setStatus(404);
 			
 		}
 		
-		return company;
+		return tag;
 	}
 	
+	/* ----------------------------------------------------------------------------
+		GET search Tag by name
+	---------------------------------------------------------------------------- */
+	@GetMapping("tags/search/{name}")
+	public List<Tag> getTagsByName(
+		@PathVariable String name,
+		HttpServletResponse res
+	) {
+		List<Tag> tags = null;
+		try {
+			tags = tagService.findByNameLike(name);
+			if (tags == null) {
+				res.setStatus(400);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		
+		return tags;
+	}
 	
 	/* ----------------------------------------------------------------------------
-		GET company games and roles by ID
+		GET games by Tag ID
 	---------------------------------------------------------------------------- */
-	@GetMapping("companies/{id}/games/roles")
-	public List<GameCompany> getCompanyGameRoles(
+	@GetMapping("tags/{id}/games")
+	public List<Game> getGamesByTagId(
 		@PathVariable int id,
 		HttpServletResponse res
 	) {
-		List<GameCompany> games = null;
-		if (companyService.existsById(id)) {
-			Company company = companyService.findById(id);
-			games = company.getGames();
+		List<Game> games = null;
+		try {
+			games = tagService.getGamesByTagId(id);
+			if (games == null) {
+				res.setStatus(404);
+			}
 			
-		} else {
-			res.setStatus(404);
-			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
 		}
 		
 		return games;
 	}
-	
-	
-	/* ----------------------------------------------------------------------------
-		GET company games by ID
-	---------------------------------------------------------------------------- */
-	@GetMapping("companies/{id}/games")
-	public List<Game> getCompanyGamesById(
-		@PathVariable int id
-	) {
-		return gameService.getGamesByCompany(id);
-	}
-
-	
-	
 }
