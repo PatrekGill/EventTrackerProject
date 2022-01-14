@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Status;
-import com.skilldistillery.mygamelist.services.StatusService;
+import com.skilldistillery.mygamelist.services.status.StatusService;
 
 @RestController
 @RequestMapping("api")

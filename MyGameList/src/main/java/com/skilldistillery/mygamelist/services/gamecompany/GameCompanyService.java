@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.services;
+package com.skilldistillery.mygamelist.services.gamecompany;
 
 import com.skilldistillery.mygamelist.CRUDObject;
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;

@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.services;
+package com.skilldistillery.mygamelist.services.gamecompany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

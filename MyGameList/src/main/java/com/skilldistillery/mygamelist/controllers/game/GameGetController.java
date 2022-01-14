@@ -19,10 +19,10 @@ import com.skilldistillery.mygamelist.entities.GameRelease;
 import com.skilldistillery.mygamelist.entities.GameStaff;
 import com.skilldistillery.mygamelist.entities.Platform;
 import com.skilldistillery.mygamelist.entities.Staff;
-import com.skilldistillery.mygamelist.services.GameCommentService;
-import com.skilldistillery.mygamelist.services.GameService;
-import com.skilldistillery.mygamelist.services.PlatformService;
-import com.skilldistillery.mygamelist.services.StaffService;
+import com.skilldistillery.mygamelist.services.game.GameService;
+import com.skilldistillery.mygamelist.services.gamecomment.GameCommentService;
+import com.skilldistillery.mygamelist.services.platform.PlatformService;
+import com.skilldistillery.mygamelist.services.staff.StaffService;
 
 @RestController
 @RequestMapping("api")

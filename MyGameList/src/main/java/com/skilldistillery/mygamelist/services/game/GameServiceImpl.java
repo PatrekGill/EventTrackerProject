@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.services;
+package com.skilldistillery.mygamelist.services.game;
 
 import java.util.List;
 

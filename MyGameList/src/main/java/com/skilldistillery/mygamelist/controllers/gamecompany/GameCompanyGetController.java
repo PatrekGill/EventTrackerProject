@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 import com.skilldistillery.mygamelist.entities.GameCompany;
-import com.skilldistillery.mygamelist.services.GameCompanyService;
+import com.skilldistillery.mygamelist.services.gamecompany.GameCompanyService;
 
 @RestController
 @RequestMapping("api")

@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.services;
+package com.skilldistillery.mygamelist.services.usergame;
 
 import java.util.List;
 
@@ -42,8 +42,7 @@ public class UserGameServiceImpl implements UserGameService {
 
 	@Override
 	public UserGame create(UserGame object) {
-		// TODO Auto-generated method stub
-		return null;
+		return gameRepo.saveAndFlush(object);
 	}
 
 	@Override

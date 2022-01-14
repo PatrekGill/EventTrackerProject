@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.GameComment;
-import com.skilldistillery.mygamelist.services.GameCommentService;
+import com.skilldistillery.mygamelist.services.gamecomment.GameCommentService;
 
 @RestController
 @RequestMapping("api")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.Tag;
-import com.skilldistillery.mygamelist.services.TagService;
+import com.skilldistillery.mygamelist.services.tag.TagService;
 
 @RestController
 @RequestMapping("api")

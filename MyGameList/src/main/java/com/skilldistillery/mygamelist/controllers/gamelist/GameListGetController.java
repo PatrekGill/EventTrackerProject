@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.GameList;
-import com.skilldistillery.mygamelist.services.GameListService;
+import com.skilldistillery.mygamelist.services.gamelist.GameListService;
 
 @RestController
 @RequestMapping("api")
