@@ -22,16 +22,33 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User findById(int id) {
+	public User findById(Integer id) {
 		return userRetriever.get(
 			userRepo.findById(id)
 		);
-				
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return userRepo.existsById(id);
+	}
+
+	@Override
+	public User create(User object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(Integer id, User object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

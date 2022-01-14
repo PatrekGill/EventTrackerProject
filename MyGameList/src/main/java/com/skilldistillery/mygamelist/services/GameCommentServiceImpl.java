@@ -18,7 +18,7 @@ public class GameCommentServiceImpl implements GameCommentService {
 
 
 	@Override
-	public GameComment findById(int id) {
+	public GameComment findById(Integer id) {
 		return commentRetriever.get(
 			commentRepo.findById(id)
 		);
@@ -39,7 +39,7 @@ public class GameCommentServiceImpl implements GameCommentService {
 	}
 
 	@Override
-	public GameComment update(int id, GameComment comment) {
+	public GameComment update(Integer id, GameComment comment) {
 		GameComment managed = findById(id);
 		if (managed != null) {
 			managed.setText(comment.getText());
@@ -50,12 +50,12 @@ public class GameCommentServiceImpl implements GameCommentService {
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return commentRepo.existsById(id);
 	}
 	
 	@Override
-	public boolean delete(int id) {
+	public boolean deleteById(Integer id) {
 		boolean deleted = false;
 		if (existsById(id)) {
 			GameComment comment = findById(id);

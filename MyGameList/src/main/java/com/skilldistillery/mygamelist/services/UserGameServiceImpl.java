@@ -39,6 +39,30 @@ public class UserGameServiceImpl implements UserGameService {
 	public UserGame findByGameAndUserId(int gameId, int userId) {
 		return gameRepo.findByGame_idAndUser_id(gameId, userId);
 	}
+
+	@Override
+	public UserGame create(UserGame object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserGame update(UserGameId id, UserGame object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(UserGameId id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean existsById(UserGameId id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

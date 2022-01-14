@@ -85,7 +85,7 @@ public class GameModifyController {
 		HttpServletResponse res
 	) {
 		if (gameService.existsById(id)) {
-			if (gameService.delete(id)) {
+			if (gameService.deleteById(id)) {
 				res.setStatus(204);
 				
 			} else {

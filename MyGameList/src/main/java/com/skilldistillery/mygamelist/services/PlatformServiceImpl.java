@@ -23,7 +23,7 @@ public class PlatformServiceImpl implements PlatformService {
 	}
 
 	@Override
-	public Platform findById(int id) {
+	public Platform findById(Integer id) {
 		return platformRetriever.get(
 			platformRepo.findById(id)
 		);
@@ -40,8 +40,26 @@ public class PlatformServiceImpl implements PlatformService {
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return platformRepo.existsById(id);
+	}
+
+	@Override
+	public Platform create(Platform object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Platform update(Integer id, Platform object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

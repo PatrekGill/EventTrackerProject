@@ -23,7 +23,7 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	@Override
-	public Game findById(int id) {
+	public Game findById(Integer id) {
 		return gameRetriever.get(
 			gameRepo.findById(id)
 		);
@@ -50,7 +50,7 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game update(int id,Game game) {
+	public Game update(Integer id,Game game) {
 		Game managedGame = findById(id);
 		if (managedGame != null) {
 			managedGame.setTitle(game.getTitle());
@@ -64,12 +64,12 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return gameRepo.existsById(id);
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public boolean deleteById(Integer id) {
 		boolean deleted = false;
 		try {
 			gameRepo.deleteById(id);

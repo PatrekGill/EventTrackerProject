@@ -23,7 +23,7 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff findById(int id) {
+	public Staff findById(Integer id) {
 		return staffRetriever.get(
 			staffRepo.findById(id)
 		);
@@ -40,7 +40,25 @@ public class StaffServiceImpl implements StaffService {
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return staffRepo.existsById(id);
+	}
+
+	@Override
+	public Staff create(Staff object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Staff update(Integer id, Staff object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -2,10 +2,9 @@ package com.skilldistillery.mygamelist.services;
 
 import java.util.List;
 
+import com.skilldistillery.mygamelist.CRUDObject;
 import com.skilldistillery.mygamelist.entities.GameList;
 
-public interface GameListService {
+public interface GameListService extends CRUDObject<GameList,Integer> {
 	List<GameList> findAll();
-	GameList findById(int id);
-	boolean existsById(int id);
 }

@@ -23,7 +23,7 @@ public class TagServiceImpl implements TagService {
 	}
 	
 	@Override
-	public Tag findById(int id) {
+	public Tag findById(Integer id) {
 		return tagRetriever.get(
 			tagRepo.findById(id)
 		);
@@ -51,7 +51,25 @@ public class TagServiceImpl implements TagService {
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return tagRepo.existsById(id);
+	}
+
+	@Override
+	public Tag create(Tag object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tag update(Integer id, Tag object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

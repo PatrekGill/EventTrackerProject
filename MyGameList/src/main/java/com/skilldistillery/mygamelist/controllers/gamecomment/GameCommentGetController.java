@@ -194,7 +194,7 @@ public class GameCommentGetController {
 		HttpServletResponse res
 	) {
 		if (commentService.existsById(id)) {
-			if (commentService.delete(id)) {
+			if (commentService.deleteById(id)) {
 				res.setStatus(204);
 				
 			} else {

@@ -48,7 +48,7 @@ public class GameCompanyServiceImpl implements GameCompanyService {
 	}
 
 	@Override
-	public boolean delete(GameCompanyId id) {
+	public boolean deleteById(GameCompanyId id) {
 		gcRepo.deleteById(id);
 		boolean deleted = false;
 		if (!gcRepo.existsById(id)) {

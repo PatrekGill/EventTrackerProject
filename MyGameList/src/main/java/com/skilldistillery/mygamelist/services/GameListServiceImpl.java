@@ -22,15 +22,33 @@ public class GameListServiceImpl implements GameListService {
 	}
 
 	@Override
-	public GameList findById(int id) {
+	public GameList findById(Integer id) {
 		return gameListRetriever.get(
 			glRepo.findById(id)
 		);
 	}
 	
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return glRepo.existsById(id);
+	}
+
+	@Override
+	public GameList create(GameList object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GameList update(Integer id, GameList object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

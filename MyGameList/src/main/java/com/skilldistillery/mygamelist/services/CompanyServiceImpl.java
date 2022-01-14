@@ -22,7 +22,7 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Company findById(int id) {
+	public Company findById(Integer id) {
 		return companyRetriever.get(
 			companyRepo.findById(id)
 		);
@@ -39,8 +39,26 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public boolean existsById(int id) {
+	public boolean existsById(Integer id) {
 		return companyRepo.existsById(id);
+	}
+
+	@Override
+	public Company create(Company company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Company update(Integer id,Company company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
