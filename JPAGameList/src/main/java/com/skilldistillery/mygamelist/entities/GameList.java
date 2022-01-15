@@ -20,6 +20,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 @Table(name="game_list")
@@ -49,6 +50,7 @@ public class GameList {
     )
     private List<Game> games;
 	
+    @SpringUpdate
 	private String name;
 	private boolean permanent;
 	

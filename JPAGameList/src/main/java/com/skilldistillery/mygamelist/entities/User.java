@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class User {
@@ -39,7 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserGame> gamesOnList;
     
+    @SpringUpdate
 	private String password;
+    @SpringUpdate
 	private String username;
 	
 
