@@ -45,14 +45,17 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Company create(Company company) {
-		// TODO Auto-generated method stub
-		return null;
+		return companyRepo.saveAndFlush(company);
 	}
 
 	@Override
 	public Company update(Integer id,Company company) {
-		// TODO Auto-generated method stub
-		return null;
+		Company managed = findById(id);
+		if (managed != null) {
+			
+		}
+		
+		return managed;
 	}
 
 	@Override

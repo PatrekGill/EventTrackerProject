@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class Company {
@@ -38,6 +39,7 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<GameCompany> games;
     
+    @SpringUpdate
     private String name;
     private String description;
     
@@ -72,6 +74,7 @@ public class Company {
 		this.name = name;
 	}
 	
+	
 	/* ----------------------------------------------------------------------------
 		Get/Set description
 	---------------------------------------------------------------------------- */
@@ -82,6 +85,7 @@ public class Company {
 		this.description = description;
 	}
 
+	
 	/* ----------------------------------------------------------------------------
 		Get/Set imageURL
 	---------------------------------------------------------------------------- */

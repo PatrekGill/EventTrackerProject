@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class Game {
@@ -25,6 +26,7 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@SpringUpdate
 	@Column(name="image_url")
 	private String imageURL;
 	
@@ -59,8 +61,10 @@ public class Game {
     @OneToMany(mappedBy="game")
     @OrderBy("created_date_time DESC") // most recent first
     private List<GameComment> comments;
-
+    
+    @SpringUpdate
 	private String description;
+    @SpringUpdate
 	private String title;
 	
 	

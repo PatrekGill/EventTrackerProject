@@ -1,11 +1,14 @@
 package com.skilldistillery.mygamelist.services.game;
 
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.entities.Company;
 import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.repositories.GameRepository;
@@ -52,17 +55,42 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Game update(Integer id,Game game) {
 		Game managedGame = findById(id);
+//		if (managedGame != null) {
+//			managedGame.setTitle(game.getTitle());
+//			managedGame.setDescription(game.getDescription());
+//			managedGame.setImageURL(game.getImageURL());
+//			
+//			gameRepo.saveAndFlush(managedGame);
+//		}
 		if (managedGame != null) {
-			managedGame.setTitle(game.getTitle());
-			managedGame.setDescription(game.getDescription());
-			managedGame.setImageURL(game.getImageURL());
+			try {
+				for(Field field : Game.class.getDeclaredFields())
+				{
+					if (field.isAnnotationPresent(SpringUpdate.class))
+					{
+						PropertyDescriptor desc = new PropertyDescriptor(field.getName(), Game.class);
+						Object newValue = desc.getReadMethod().invoke(game);
+						desc.getWriteMethod().invoke(managedGame,newValue);
+					}
+				}
+				
+				gameRepo.saveAndFlush(managedGame);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.err.println("Failed to update entity with id: " + id);
+			}
 			
-			gameRepo.saveAndFlush(managedGame);
+//			Object thing = Double.valueOf(1.0);
+//			test(thing);
 		}
 		
 		return managedGame;
 	}
-
+	
+	public void test(double num) {
+		
+	}
+	
 	@Override
 	public boolean existsById(Integer id) {
 		return gameRepo.existsById(id);
