@@ -7,7 +7,6 @@ import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.entities.Tag;
 
 public interface TagService extends CRUDObject<Tag,Integer> {
-	List<Tag> findAll();
 	List<Tag> findByNameLike(String name);
 	List<Game> getGamesByTagId(int id);
 }

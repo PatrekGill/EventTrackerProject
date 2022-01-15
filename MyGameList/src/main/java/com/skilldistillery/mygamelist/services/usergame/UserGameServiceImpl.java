@@ -3,6 +3,7 @@ package com.skilldistillery.mygamelist.services.usergame;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -15,14 +16,14 @@ public class UserGameServiceImpl implements UserGameService {
 	@Autowired
 	private UserGameRepository gameRepo;
 	@Autowired
-	private OptionalRetriever<UserGame> gameRetriever;
-	
+	private OptionalRetriever<UserGame> retriever;
 	@Override
-	public UserGame findById(UserGameId id) {
-		return gameRetriever.get(
-			gameRepo.findById(id)
-		);
-		
+	public JpaRepository<UserGame, UserGameId> getRepo() {
+		return gameRepo;
+	}
+	@Override
+	public OptionalRetriever<UserGame> getRetriever() {
+		return retriever;
 	}
 	
 	@Override
@@ -38,30 +39,6 @@ public class UserGameServiceImpl implements UserGameService {
 	@Override
 	public UserGame findByGameAndUserId(int gameId, int userId) {
 		return gameRepo.findByGame_idAndUser_id(gameId, userId);
-	}
-
-	@Override
-	public UserGame create(UserGame object) {
-		return gameRepo.saveAndFlush(object);
-	}
-
-	@Override
-	public UserGame update(UserGameId id, UserGame object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean deleteById(UserGameId id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean existsById(UserGameId id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
+	}	
 	
 }

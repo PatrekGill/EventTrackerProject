@@ -3,6 +3,7 @@ package com.skilldistillery.mygamelist.services.tag;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -15,18 +16,14 @@ public class TagServiceImpl implements TagService {
 	@Autowired
 	private TagRepository tagRepo;
 	@Autowired
-	private OptionalRetriever<Tag> tagRetriever;
-	
+	private OptionalRetriever<Tag> retriever;
 	@Override
-	public List<Tag> findAll() {
-		return tagRepo.findAll();
+	public JpaRepository<Tag, Integer> getRepo() {
+		return tagRepo;
 	}
-	
 	@Override
-	public Tag findById(Integer id) {
-		return tagRetriever.get(
-			tagRepo.findById(id)
-		);
+	public OptionalRetriever<Tag> getRetriever() {
+		return retriever;
 	}
 
 	@Override
@@ -48,28 +45,5 @@ public class TagServiceImpl implements TagService {
 		}
 		
 		return games;
-	}
-	
-	@Override
-	public boolean existsById(Integer id) {
-		return tagRepo.existsById(id);
-	}
-
-	@Override
-	public Tag create(Tag object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Tag update(Integer id, Tag object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

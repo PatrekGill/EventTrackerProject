@@ -4,30 +4,31 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class CRUDObject<T,I> {
-	@Autowired
-	private OptionalRetriever<T> retriever;
-	@Autowired
-	private JpaRepository<T, I> repo;
+public interface CRUDObject<T,I> {
+	JpaRepository<T, I> getRepo();
+	OptionalRetriever<T> getRetriever();
 	
-	public List<T> findAll() {
-		return repo.findAll();
+	default List<T> findAll() {
+		return getRepo().findAll();
 	}
 	
-	public T findById(I id) {
-		return retriever.get(
-			repo.findById(id)
+	default T findById(I id) {
+		if (id == null) {
+			return null;
+		}
+		
+		return getRetriever().get(
+			getRepo().findById(id)
 		);
 	}
 	
-	public T create(T object) {
-		return repo.saveAndFlush(object);
+	default T create(T object) {
+		return getRepo().saveAndFlush(object);
 	}
 	
-	public T update(I id, T object) {
+	default T update(I id, T object) {
 		T managed = findById(id);
 
 		if (managed != null && object != null) {
@@ -48,7 +49,7 @@ public class CRUDObject<T,I> {
 					}
 				}
 				
-				repo.saveAndFlush(managed);
+				getRepo().saveAndFlush(managed);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.err.println("Failed to update " + typeClass + " entity with id: " + id);
@@ -59,22 +60,29 @@ public class CRUDObject<T,I> {
 	}
 	
 	
-	public boolean deleteById(I id) {
+	default boolean deleteById(I id) {
 		boolean deleted = false;
-		try {
-			repo.deleteById(id);
-			if (!existsById(id)) {
-				deleted = true;
+		if (id != null && existsById(id)) {
+			try {
+				getRepo().deleteById(id);
+				if (!existsById(id)) {
+					deleted = true;
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		return deleted;
 	}
 	
-	public boolean existsById(I id) {
-		return repo.existsById(id);
+	default boolean existsById(I id) {
+		boolean exists = false;
+		if (id != null) {
+			exists = getRepo().existsById(id);
+		}
+		
+		return exists;
 	}
 }

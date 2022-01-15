@@ -3,6 +3,7 @@ package com.skilldistillery.mygamelist.services.gamecomment;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -14,39 +15,20 @@ public class GameCommentServiceImpl implements GameCommentService {
 	@Autowired
 	private GameCommentRepository commentRepo;
 	@Autowired
-	private OptionalRetriever<GameComment> commentRetriever;
-
-
+	private OptionalRetriever<GameComment> retriever;
 	@Override
-	public GameComment findById(Integer id) {
-		return commentRetriever.get(
-			commentRepo.findById(id)
-		);
+	public JpaRepository<GameComment, Integer> getRepo() {
+		return commentRepo;
 	}
+	@Override
+	public OptionalRetriever<GameComment> getRetriever() {
+		return retriever;
+	}
+	
 	
 	@Override
 	public List<GameComment> getNonReplyCommentsOnGame(int id) {
 		return commentRepo.getVisibleAndNonReplyingCommentsOnGameById(id);
-	}
-
-	@Override
-	public GameComment create(GameComment comment) {
-		if (!comment.isVisible()) {
-			comment.setVisible(true);
-		}
-		
-		return commentRepo.saveAndFlush(comment);
-	}
-
-	@Override
-	public GameComment update(Integer id, GameComment comment) {
-		GameComment managed = findById(id);
-		if (managed != null) {
-			managed.setText(comment.getText());
-			commentRepo.saveAndFlush(managed);
-		}
-		
-		return managed;
 	}
 	
 	@Override

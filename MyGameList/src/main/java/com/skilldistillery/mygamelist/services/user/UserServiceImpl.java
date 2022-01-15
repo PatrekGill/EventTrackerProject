@@ -1,8 +1,7 @@
 package com.skilldistillery.mygamelist.services.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -14,42 +13,15 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
-	private OptionalRetriever<User> userRetriever;
-	
-	@Override
-	public List<User> findAll() {
-		return userRepo.findAll();
-	}
-	
-	@Override
-	public User findById(Integer id) {
-		return userRetriever.get(
-			userRepo.findById(id)
-		);
-	}
-	
-	@Override
-	public boolean existsById(Integer id) {
-		return userRepo.existsById(id);
-	}
+	private OptionalRetriever<User> retriever;
 
 	@Override
-	public User create(User object) {
-		// TODO Auto-generated method stub
-		return null;
+	public JpaRepository<User, Integer> getRepo() {
+		return userRepo;
 	}
-
 	@Override
-	public User update(Integer id, User object) {
-		// TODO Auto-generated method stub
-		return null;
+	public OptionalRetriever<User> getRetriever() {
+		return retriever;
 	}
-
-	@Override
-	public boolean deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	
 }
