@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.UserGameId;
 
 @Entity
@@ -25,21 +26,27 @@ public class UserGame {
 	@ManyToOne
 	@JoinColumn(name="game_id")
 	private Game game;
-
+	
+	@SpringUpdate
 	@ManyToOne
 	@JoinColumn(name="status_id")
 	private Status status;
 	
+	@SpringUpdate
 	@Column(name="start_date")
     private LocalDate startDate;
 	
+	@SpringUpdate
 	@Column(name="finish_date")
 	private LocalDate finishDate;
-
+	
+	@SpringUpdate
 	@Column(name="hours_played")
 	private double hoursPlayed;
 	
+	@SpringUpdate
 	private String notes;
+	@SpringUpdate
 	private int score;
 
 	

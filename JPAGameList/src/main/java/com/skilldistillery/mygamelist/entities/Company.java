@@ -24,6 +24,7 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@SpringUpdate
 	@Column(name="image_url")
 	private String imageURL;
 	
@@ -41,6 +42,7 @@ public class Company {
     
     @SpringUpdate
     private String name;
+    @SpringUpdate
     private String description;
     
 

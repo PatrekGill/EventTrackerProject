@@ -3,6 +3,7 @@ package com.skilldistillery.mygamelist.services.company;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -14,18 +15,14 @@ public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private CompanyRepository companyRepo;
 	@Autowired
-	private OptionalRetriever<Company> companyRetriever;
-	
+	private OptionalRetriever<Company> retriever;
 	@Override
-	public List<Company> findAll() {
-		return companyRepo.findAll();
+	public JpaRepository<Company, Integer> getRepo() {
+		return companyRepo;
 	}
-
 	@Override
-	public Company findById(Integer id) {
-		return companyRetriever.get(
-			companyRepo.findById(id)
-		);
+	public OptionalRetriever<Company> getRetriever() {
+		return retriever;
 	}
 
 	@Override
@@ -36,32 +33,6 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		
 		return companies;
-	}
-
-	@Override
-	public boolean existsById(Integer id) {
-		return companyRepo.existsById(id);
-	}
-
-	@Override
-	public Company create(Company company) {
-		return companyRepo.saveAndFlush(company);
-	}
-
-	@Override
-	public Company update(Integer id,Company company) {
-		Company managed = findById(id);
-		if (managed != null) {
-			
-		}
-		
-		return managed;
-	}
-
-	@Override
-	public boolean deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

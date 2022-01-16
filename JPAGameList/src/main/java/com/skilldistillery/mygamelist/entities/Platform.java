@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class Platform {
@@ -22,7 +23,10 @@ public class Platform {
 	@OneToMany(mappedBy = "platform")
 	List<GameRelease> releases;
 	
+	@SpringUpdate
 	private String name;
+	
+	@SpringUpdate
 	private String abbreviation;
 
 	/* ----------------------------------------------------------------------------

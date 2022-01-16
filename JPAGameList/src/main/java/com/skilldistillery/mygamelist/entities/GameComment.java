@@ -19,6 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 @Table(name="game_comment")
@@ -55,6 +56,7 @@ public class GameComment {
     private List<GameComment> replies;
 
     private boolean visible;
+    @SpringUpdate
     private String text;
     
     

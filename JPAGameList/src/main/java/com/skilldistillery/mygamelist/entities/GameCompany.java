@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 
 @Entity
@@ -23,6 +24,7 @@ public class GameCompany {
 	@JoinColumn(name="company_id")
 	private Company company;
 	
+	@SpringUpdate
 	private String role;
 	
 	

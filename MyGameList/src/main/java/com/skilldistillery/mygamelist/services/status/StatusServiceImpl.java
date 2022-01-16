@@ -1,8 +1,7 @@
 package com.skilldistillery.mygamelist.services.status;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mygamelist.OptionalRetriever;
@@ -12,24 +11,17 @@ import com.skilldistillery.mygamelist.repositories.StatusRepository;
 @Service
 public class StatusServiceImpl implements StatusService {
 	@Autowired
-	private StatusRepository statusRepo;
+	private StatusRepository repo;
 	@Autowired
-	private OptionalRetriever<Status> statusRetriever;
-
-	@Override
-	public List<Status> findAll() {
-		return statusRepo.findAll();
-	}
-
-	@Override
-	public Status findById(int id) {
-		return statusRetriever.get(
-			statusRepo.findById(id)
-		);
-	}
+	private OptionalRetriever<Status> retriever;
 	
 	@Override
-	public boolean existsById(int id) {
-		return statusRepo.existsById(id);
+	public JpaRepository<Status, Integer> getRepo() {
+		return repo;
 	}
+	@Override
+	public OptionalRetriever<Status> getRetriever() {
+		return retriever;
+	}
+	
 }

@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class Tag {
@@ -29,6 +30,7 @@ public class Tag {
     )
 	private List<Game> games;
 	
+	@SpringUpdate
 	private String name;
 
 	/* ----------------------------------------------------------------------------

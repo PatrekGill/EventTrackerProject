@@ -1,7 +1,5 @@
 package com.skilldistillery.mygamelist.controllers.company;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.Company;
-import com.skilldistillery.mygamelist.entities.Game;
 import com.skilldistillery.mygamelist.services.company.CompanyService;
 
 @RestController

@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.GameStaffId;
 
 @Entity
@@ -24,6 +25,7 @@ public class GameStaff {
 	@JoinColumn(name="staff_id")
 	private Staff staff;
 	
+	@SpringUpdate
 	private String role;
 	
 	

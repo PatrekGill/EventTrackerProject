@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
 public class Staff {
@@ -23,6 +24,7 @@ public class Staff {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@SpringUpdate
 	@Column(name="image_url")
 	private String imageURL;
 	
@@ -38,7 +40,9 @@ public class Staff {
     @OneToMany(mappedBy = "staff")
     private List<GameStaff> games;
     
+    @SpringUpdate
     private String name;
+    @SpringUpdate
     private String description;
     
 

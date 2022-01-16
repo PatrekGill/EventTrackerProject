@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.GameReleaseId;
 
 @Entity
@@ -27,6 +28,7 @@ public class GameRelease {
 	@JoinColumn(name="platform_id")
 	private Platform platform;
 	
+	@SpringUpdate
 	private LocalDate date;
 	
 

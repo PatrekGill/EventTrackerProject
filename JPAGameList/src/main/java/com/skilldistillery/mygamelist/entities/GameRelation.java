@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.GameRelationId;
 
 @Entity
@@ -25,6 +26,7 @@ public class GameRelation {
 	@JoinColumn(name="other_game_id")
 	private Game otherGame;
 	
+	@SpringUpdate
 	@ManyToOne
 	@JoinColumn(name="relationship_id")
 	private Relationship relationship;
