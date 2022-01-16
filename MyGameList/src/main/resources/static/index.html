@@ -8,10 +8,27 @@
     <body>
         <h1>My Game List</h1>
         <h3>Games And Info</h3>
-        <main>
-            <div id="commentList">
-                
-            </div>
-        </main>
+
+        <form name="searchForm">
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search For Game By Title">
+            <button type="button" id="searchButton" name="searchButton">Search</button>
+        </form>
+
+        <div id="searchResultsDiv">
+
+        </div>
+
+        <div id="commentTableDiv">
+            <table id="commentTable">
+                <thead>
+                    <tr>
+                        <th id="commentTableHead"></th>
+                    </tr>
+                </thead>
+                <tbody id="commentTableBody">
+                    
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
