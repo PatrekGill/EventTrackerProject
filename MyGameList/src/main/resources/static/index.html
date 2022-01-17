@@ -3,19 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>My Game List</title>
-        <script type="text/javascript" src="js/script.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/comment.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/search.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/init.js" charset="utf-8"></script>
     </head>
     <body>
         <h1>My Game List</h1>
         <h3>Games And Info</h3>
 
         <form name="searchForm">
-            <input type="text" id="searchInput" name="searchInput" placeholder="Search For Game By Title">
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search For Game By Title" value="mass">
             <button type="button" id="searchButton" name="searchButton">Search</button>
         </form>
 
         <div id="searchResultsDiv">
+            <table id="searchResultsTable">
+                <thead>
+                    <tr>
+                        <th id="searchResultsTableHead"></th>
+                    </tr>
+                </thead>
+                <tbody id="searchResultsTableBody">
+                    
+                </tbody>
+            </table>
+        </div>
 
+        <div id="gameDetailsDiv">
+            
         </div>
 
         <div id="commentTableDiv">
