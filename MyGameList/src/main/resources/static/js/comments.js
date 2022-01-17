@@ -71,7 +71,7 @@ var updateCommentEvent = function(event) {
     event.preventDefault();
     const gameComment = event.target.parentElement.parentElement.comment;
     
-    gameComment.text = document.getElementById("editTextInput_" + gameComment.id);
+    gameComment.text = document.getElementById("editTextInput_" + gameComment.id).value;
     const gameCommentJSON = JSON.stringify(gameComment);
 
     let xhr = new XMLHttpRequest();
@@ -91,7 +91,6 @@ var updateCommentEvent = function(event) {
             } else {
                 console.log("update failed!");
                 console.log(xhr.status);
-
             }
         }
     };
