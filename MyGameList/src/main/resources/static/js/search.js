@@ -1,16 +1,8 @@
-function clearChildren(node) {
-    while (node.firstChild) {
-        node.removeChild(node.lastChild);
-    }
-}
-
-
-
 function displaySearchResults(results) {
     const tableBody = document.getElementById("searchResultsTableBody");
     clearChildren(tableBody);
     
-    for (i = 0; i < results.length; i++) {
+    for (let i = 0; i < results.length; i++) {
         const game = results[i];
 
         const tableRow = document.createElement("tr");
@@ -32,7 +24,6 @@ function displaySearchResults(results) {
 
 var searchForGamesFunction = function(event) {
     event.preventDefault();
-    console.log("searched");
 
     const searchValue = document.getElementById("searchInput").value;
     
@@ -41,7 +32,7 @@ var searchForGamesFunction = function(event) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.log("Request Good");
+                // console.log("Request Good");
                 let games = JSON.parse(xhr.responseText);
                 displaySearchResults(games);
 
@@ -83,6 +74,8 @@ var displayGameDetailsfunction = function displayGameDetails(event) {
         image.src = gameImageUrl;
         console.log(game.imageURL);
     }
+
+    getCommentsForGame(game.id);
     
 }
 

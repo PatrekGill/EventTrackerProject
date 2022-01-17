@@ -21,3 +21,9 @@ window.addEventListener("load",function(event) {
     init();
 });
 
+
+function clearChildren(node) {
+    while (node.firstChild) {
+        node.removeChild(node.lastChild);
+    }
+}
