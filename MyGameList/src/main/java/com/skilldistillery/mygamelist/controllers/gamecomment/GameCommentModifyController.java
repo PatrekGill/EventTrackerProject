@@ -32,6 +32,7 @@ public class GameCommentModifyController {
 	) {
 		
 		try {
+			comment.setVisible(true);
 			comment = commentService.create(comment);
 			res.setStatus(201);
 			
@@ -68,7 +69,7 @@ public class GameCommentModifyController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid game sent to update");
+			System.err.println("Invalid GameComment sent to update");
 			res.setStatus(400);
 			comment = null;
 			
