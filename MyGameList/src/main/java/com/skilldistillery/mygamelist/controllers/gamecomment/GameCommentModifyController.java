@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mygamelist.entities.GameComment;
 import com.skilldistillery.mygamelist.services.gamecomment.GameCommentService;
 
+@RestController
+@RequestMapping("api")
 public class GameCommentModifyController {
 	@Autowired
 	private GameCommentService commentService;

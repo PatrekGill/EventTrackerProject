@@ -1,6 +1,69 @@
-function postComment() {
+function createPostCommentForm() {
+    const postDiv = document.getElementById("postCommentDiv");
+    clearChildren(postDiv);
 
+    const commentPostForm = document.createElement("form");
+    commentPostForm.name = "commentPostForm";
+
+    const textInput = document.createElement("textArea");
+    textInput.name = "commentTextInput";
+    textInput.rows = "4";
+    textInput.classList.add("postCommentTextArea");
+    
+    const postButton = document.createElement("button");
+    postButton.textContent = "Post Comment";
+    postButton.addEventListener("click",postCommentEvent);
+
+    commentPostForm.appendChild(textInput);
+    commentPostForm.appendChild(postButton);
+    postDiv.appendChild(commentPostForm);
 }
+
+function getCurrentGame() {
+    return document.getElementById("gameDetailsDiv").game;
+}
+
+var postCommentEvent = function postComment(event) {
+    event.preventDefault();
+    const gameId = getCurrentGame().id;
+    const commentText = document.commentPostForm.commentTextInput.value;
+
+    const game = {
+        "id" : gameId
+    };
+    const user = {
+        "id" : 1
+    };
+    const gameComment = {
+        "user" : user,
+        "game" : game,
+        "text" : commentText
+    };
+    const gameCommentJSON = JSON.stringify(gameComment);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST",`api/GameComment`);
+    xhr.setRequestHeader("Content-type","application/json");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 201) {
+                console.log("Post Success");
+                getCommentsForGame(getCurrentGame().id)
+
+            } else {
+                console.log("Post failed!");
+                console.log(xhr.status);
+
+            }
+        }
+    };
+
+    
+    xhr.send(gameCommentJSON);
+}
+
+
 
 function getCommentsForGame(gameId) {
     const xhr = new XMLHttpRequest();
@@ -27,9 +90,8 @@ function getCommentsForGame(gameId) {
 function displayComments(comments) {
     const tableBody = document.getElementById("commentTableBody");
     clearChildren(tableBody);
-    
+
     const tableHeader = document.getElementById("commentTableHeader");
-    
     if (comments.length > 0) {
         const tableDateHeader = document.getElementById("commentTableDateHeader");
         tableDateHeader.textContent = "Date";
@@ -58,4 +120,5 @@ function displayComments(comments) {
         tableHeader.textContent = "No Comments...";
     }
     
+    createPostCommentForm();
 }

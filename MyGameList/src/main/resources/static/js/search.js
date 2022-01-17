@@ -61,6 +61,7 @@ var displayGameDetailsfunction = function displayGameDetails(event) {
     const titlePara = document.createElement("p");
     gameDetailsDiv.appendChild(titlePara);
     const game = event.target.game;
+    gameDetailsDiv.game = game;
     titlePara.textContent = `Title: ${game.title}`;
     
     const descriptionPara = document.createElement("p");
