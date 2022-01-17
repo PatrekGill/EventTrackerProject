@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>My Game List</title>
+        <link rel="stylesheet" href="css/commentTable.css">
         <script type="text/javascript" src="js/comments.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/search.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/init.js" charset="utf-8"></script>
@@ -34,12 +35,18 @@
         </div>
 
         <div id="commentTableDiv">
-            <table id="commentTable">
+            <table id="commentTable" class="commentTable">
+                <colgroup>
+                    <col span="1" class="commentTextColumn">
+                    <col span="1" class="commentDateColumn">
+                    <col span="1" class="commentButtonColumn">
+                 </colgroup>
+
                 <thead>
                     <tr>
-                        <th id="commentTableHeader"></th>
-                        <th></th>
-                        <th></th>
+                        <th id="commentTableHeader" class="commentText"></th>
+                        <th id="commentTableDateHeader" class="commentDate"></th>
+                        <th class="commentButtons"></th>
                     </tr>
                 </thead>
                 <tbody id="commentTableBody">

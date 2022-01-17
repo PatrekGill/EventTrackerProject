@@ -29,7 +29,10 @@ function displayComments(comments) {
     clearChildren(tableBody);
     
     const tableHeader = document.getElementById("commentTableHeader");
+    
     if (comments.length > 0) {
+        const tableDateHeader = document.getElementById("commentTableDateHeader");
+        tableDateHeader.textContent = "Date";
         tableHeader.textContent = "Comments:";
         
         for (let index = 0; index < comments.length; index++) {
@@ -39,10 +42,12 @@ function displayComments(comments) {
     
             const tableDataText = document.createElement("td");            
             tableDataText.textContent = comment.text;
+            tableDataText.classList.add("commentText");
 
             const tableDataCreateTime = document.createElement("td");
-            let commentDate = new Date(comment.createdDateTime).toDateString();            
-            tableDataCreateTime.textContent = commentDate;
+            let commentDate = new Date(comment.createdDateTime);            
+            tableDataCreateTime.textContent = commentDate.toDateString();
+            tableDataCreateTime.classList.add("commentDate");
 
             tableRow.appendChild(tableDataText);
             tableRow.appendChild(tableDataCreateTime);            

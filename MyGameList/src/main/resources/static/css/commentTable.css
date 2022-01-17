@@ -1,0 +1,26 @@
+.commentTable {
+    width: 100%;
+}
+
+.commentTextColumn {
+    width:70%;
+}
+.commentDateColumn {
+    width:20%;
+}
+.commentButtonColumn {
+    width:10%;
+}
+
+.commentDate {
+    text-align: right;
+}
+
+.commentText {
+    text-align: left;
+}
+
+.commentButtons {
+
+}
+
