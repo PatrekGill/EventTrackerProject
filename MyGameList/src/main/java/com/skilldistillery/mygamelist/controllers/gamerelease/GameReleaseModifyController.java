@@ -1,4 +1,4 @@
-package com.skilldistillery.mygamelist.controllers.gamerelation;
+package com.skilldistillery.mygamelist.controllers.gamerelease;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,79 +11,79 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mygamelist.compositeids.GameRelationId;
-import com.skilldistillery.mygamelist.entities.GameRelation;
-import com.skilldistillery.mygamelist.services.gamerelation.GameRelationService;
+import com.skilldistillery.mygamelist.compositeids.GameReleaseId;
+import com.skilldistillery.mygamelist.entities.GameRelease;
+import com.skilldistillery.mygamelist.services.gamerelease.GameReleaseService;
 
 @RestController
 @RequestMapping("api")
-public class GameRelationModifyController {
+public class GameReleaseModifyController {
 	@Autowired
-	private GameRelationService relationService;
+	private GameReleaseService releaseService;
 	
+
 	/* ----------------------------------------------------------------------------
 		POST create game relationship
 	---------------------------------------------------------------------------- */
-	@PostMapping("gamerelation")
-	public GameRelation createRelation(
-		@RequestBody GameRelation relation,
+	@PostMapping("gamerelease")
+	public GameRelease createRelease(
+		@RequestBody GameRelease release,
 		HttpServletResponse res
 	) {
 		try {
-			relation = relationService.create(relation);
+			release = releaseService.create(release);
 			res.setStatus(201);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Failed to create game relation");
+			System.err.println("Failed to create game release");
 			res.setStatus(400);
-			relation = null;
+			release = null;
 		}
 		
-		return relation;
+		return release;
 	}
 	
 	/* ----------------------------------------------------------------------------
 		PUT update relation
 	---------------------------------------------------------------------------- */
-	@PutMapping("gamerelation")
-	public GameRelation updateRelation(
-		@RequestBody GameRelation relation,
+	@PutMapping("gamerelease")
+	public GameRelease updateRelease(
+		@RequestBody GameRelease release,
 		HttpServletResponse res
 	) {
 		
 		try {
-			GameRelationId id = new GameRelationId(
-				relation.getPrimaryGame(),
-				relation.getOtherGame()
+			GameReleaseId id = new GameReleaseId(
+				release.getGame(),
+				release.getPlatform()
 			);
-			relation = relationService.update(id, relation);
+			release = releaseService.update(id, release);
 			res.setStatus(201);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Failed to update game relation");
+			System.err.println("Failed to update game release");
 			res.setStatus(400);
-			relation = null;
+			release = null;
 		}
 		
-		return relation;
+		return release;
 	}
 	
 
 	/* ----------------------------------------------------------------------------
 		DELETE game
 	---------------------------------------------------------------------------- */
-	@DeleteMapping("gamerelation/{primaryGameId}/{otherGameId}")
-	public void deleteRelation(
-		@PathVariable int primaryGameId,
-		@PathVariable int otherGameId,
+	@DeleteMapping("gamerelation/{gameId}/{platformId}")
+	public void deleteRelease(
+		@PathVariable int gameId,
+		@PathVariable int platformId,
 		HttpServletResponse res
 	) {
-		GameRelationId id = new GameRelationId(primaryGameId,otherGameId);
-		if (relationService.existsById(id)) {
-			if (relationService.deleteById(id)) {
+		GameReleaseId id = new GameReleaseId(gameId,platformId);
+		if (releaseService.existsById(id)) {
+			if (releaseService.deleteById(id)) {
 				res.setStatus(204);
 				
 			} else {

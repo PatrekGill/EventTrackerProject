@@ -14,6 +14,11 @@ public class GameReleaseId implements Serializable {
 		Constructors
 	---------------------------------------------------------------------------- */
 	public GameReleaseId() {}
+	public GameReleaseId(int gameId, int platformId) {
+		super();
+		this.game = new Game(gameId);
+		this.platform = new Platform(platformId);
+	}
 	public GameReleaseId(Game game, Platform platform) {
 		super();
 		this.game = game;
