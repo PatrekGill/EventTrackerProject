@@ -1,12 +1,9 @@
 package com.skilldistillery.mygamelist;
 
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
-import com.skilldistillery.mygamelist.entities.*;
-import com.skilldistillery.mygamelist.compositeids.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -57,6 +54,8 @@ public interface CRUDObject<T,I> {
 								managed,
 								getMethod.invoke(object)
 							);
+						} else {
+							throw new Exception("Failed to find methods for: " + getterName + " and/or " + setterName);
 						}
 					}
 				}

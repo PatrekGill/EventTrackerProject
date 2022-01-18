@@ -1,25 +1,31 @@
 function displaySearchResults(results) {
     const tableBody = document.getElementById("searchResultsTableBody");
     clearChildren(tableBody);
+
+    if (results.length > 0) {
+        for (let i = 0; i < results.length; i++) {
+            const game = results[i];
     
-    for (let i = 0; i < results.length; i++) {
-        const game = results[i];
-
-        const tableRow = document.createElement("tr");
-        tableRow.id = "searchResult_game_" + game.id;
-
-        const tableData = document.createElement("td");
-        
-        const link = document.createElement("a");
-        link.game = game;
-        link.href = "";
-        link.textContent = game.title;
-        addGameLinkClickEvent(link);
-
-        tableData.appendChild(link);
-        tableRow.appendChild(tableData);
-        tableBody.appendChild(tableRow);
+            const tableRow = document.createElement("tr");
+            tableRow.id = "searchResult_game_" + game.id;
+    
+            const tableData = document.createElement("td");
+            
+            const link = document.createElement("a");
+            link.game = game;
+            link.href = "";
+            link.textContent = game.title;
+            addGameLinkClickEvent(link);
+    
+            tableData.appendChild(link);
+            tableRow.appendChild(tableData);
+            tableBody.appendChild(tableRow);
+        }
+    } else {
+        tableBody.textContent = "No Results Found..."
     }
+    
+    
 }
 
 var searchForGamesFunction = function(event) {
