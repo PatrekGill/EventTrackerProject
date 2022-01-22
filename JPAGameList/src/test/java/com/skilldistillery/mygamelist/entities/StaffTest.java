@@ -70,8 +70,8 @@ class StaffTest {
 	@Test
 	void test_staff_updatedDateTime_mapping() {
 		assertNotNull(staff);
-		assertEquals(1, staff.getUpdateDateTime().getMonthValue());
-		assertEquals(8, staff.getUpdateDateTime().getDayOfMonth());
+		assertEquals(1, staff.getUpdatedDateTime().getMonthValue());
+		assertEquals(8, staff.getUpdatedDateTime().getDayOfMonth());
 	}
 	
 	@Test

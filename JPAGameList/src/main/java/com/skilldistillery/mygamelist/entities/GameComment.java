@@ -31,7 +31,7 @@ public class GameComment implements NumericId {
 	
 	@Column(name="updated_date_time")
     @UpdateTimestamp
-    private LocalDateTime updateDateTime;
+    private LocalDateTime updatedDateTime;
 	
     @Column(name = "created_date_time")
 	@CreationTimestamp
@@ -81,11 +81,11 @@ public class GameComment implements NumericId {
 	/* ----------------------------------------------------------------------------
 		Get/Set updateDateTime
 	---------------------------------------------------------------------------- */
-	public LocalDateTime getUpdateDateTime() {
-		return updateDateTime;
+	public LocalDateTime getUpdatedDateTime() {
+		return updatedDateTime;
 	}
-	public void setUpdateDateTime(LocalDateTime updateDateTime) {
-		this.updateDateTime = updateDateTime;
+	public void setUpdatedDateTime(LocalDateTime updateDateTime) {
+		this.updatedDateTime = updateDateTime;
 	}
 
 

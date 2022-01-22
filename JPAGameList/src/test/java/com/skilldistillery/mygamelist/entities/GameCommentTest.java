@@ -92,7 +92,7 @@ class GameCommentTest {
 	@Test
 	void test_GameComment_updatedDateTime_mapping() {
 		assertNotNull(comment);
-		assertNotNull(comment.getUpdateDateTime());
+		assertNotNull(comment.getUpdatedDateTime());
 //		assertEquals(1, comment.getUpdateDateTime().getMonthValue());
 //		assertEquals(8, comment.getUpdateDateTime().getDayOfMonth());
 	}

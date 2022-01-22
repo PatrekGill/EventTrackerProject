@@ -80,7 +80,7 @@ class GameListTest {
 	@Test
 	void test_GameList_updatedDateTime_mapping() {
 		assertNotNull(gameList);
-		assertEquals(1, gameList.getUpdateDateTime().getMonthValue());
-		assertEquals(8, gameList.getUpdateDateTime().getDayOfMonth());
+		assertEquals(1, gameList.getUpdatedDateTime().getMonthValue());
+		assertEquals(8, gameList.getUpdatedDateTime().getDayOfMonth());
 	}
 }

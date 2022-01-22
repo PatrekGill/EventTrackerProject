@@ -67,8 +67,8 @@ class CompanyTest {
 	@Test
 	void test_company_updatedDateTime_mapping() {
 		assertNotNull(company);
-		assertEquals(1, company.getUpdateDateTime().getMonthValue());
-		assertEquals(8, company.getUpdateDateTime().getDayOfMonth());
+		assertEquals(1, company.getUpdatedDateTime().getMonthValue());
+		assertEquals(8, company.getUpdatedDateTime().getDayOfMonth());
 	}
 
 	@Test

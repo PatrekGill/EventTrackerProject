@@ -63,8 +63,8 @@ class UserTest {
 	@Test
 	void test_User_updatedDateTime_mapping() {
 		assertNotNull(user);
-		assertEquals(1, user.getUpdateDateTime().getMonthValue());
-		assertEquals(8, user.getUpdateDateTime().getDayOfMonth());
+		assertEquals(1, user.getUpdatedDateTime().getMonthValue());
+		assertEquals(8, user.getUpdatedDateTime().getDayOfMonth());
 	}
 	
 	@Test
