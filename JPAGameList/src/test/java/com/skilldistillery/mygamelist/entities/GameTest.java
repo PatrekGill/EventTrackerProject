@@ -61,8 +61,8 @@ class GameTest {
 	@Test
 	void test_Game_updatedDateTime_mapping() {
 		assertNotNull(game);
-		assertEquals(1, game.getUpdateDateTime().getMonthValue());
-		assertEquals(8, game.getUpdateDateTime().getDayOfMonth());
+		assertEquals(1, game.getUpdatedDateTime().getMonthValue());
+		assertEquals(8, game.getUpdatedDateTime().getDayOfMonth());
 	}
 	
 	@Test
