@@ -11,10 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.NumericId;
 import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
-public class Platform {
+public class Platform implements NumericId {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

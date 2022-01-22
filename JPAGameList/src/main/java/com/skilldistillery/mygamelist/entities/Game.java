@@ -18,10 +18,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.NumericId;
 import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
-public class Game {
+public class Game implements NumericId {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

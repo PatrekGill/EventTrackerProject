@@ -7,10 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.skilldistillery.mygamelist.NumericId;
 import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
-public class Relationship {
+public class Relationship implements NumericId {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

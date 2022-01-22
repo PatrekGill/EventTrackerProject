@@ -13,10 +13,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.NumericId;
 import com.skilldistillery.mygamelist.SpringUpdate;
 
 @Entity
-public class Tag {
+public class Tag implements NumericId {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

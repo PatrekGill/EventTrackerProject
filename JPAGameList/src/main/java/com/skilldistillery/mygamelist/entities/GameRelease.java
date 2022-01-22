@@ -11,13 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.mygamelist.CompositeId;
 import com.skilldistillery.mygamelist.SpringUpdate;
+import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 import com.skilldistillery.mygamelist.compositeids.GameReleaseId;
 
 @Entity
 @IdClass(GameReleaseId.class)
 @Table(name="game_release")
-public class GameRelease {
+public class GameRelease implements CompositeId<GameReleaseId> {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="game_id")
@@ -36,8 +38,17 @@ public class GameRelease {
 		Constructors
 	---------------------------------------------------------------------------- */
 	public GameRelease() {}
-	
 
+	
+	/* ----------------------------------------------------------------------------
+		Get GameReleaseId
+	---------------------------------------------------------------------------- */
+	@Override
+	public GameReleaseId getId() {
+		return new GameReleaseId(game,platform);
+	}
+
+	
 	/* ----------------------------------------------------------------------------
 		Get/Set platform
 	---------------------------------------------------------------------------- */

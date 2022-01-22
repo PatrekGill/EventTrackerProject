@@ -16,6 +16,7 @@ public class CompanyServiceImpl implements CompanyService {
 	private CompanyRepository companyRepo;
 	@Autowired
 	private OptionalRetriever<Company> retriever;
+	
 	@Override
 	public JpaRepository<Company, Integer> getRepo() {
 		return companyRepo;
@@ -34,5 +35,5 @@ public class CompanyServiceImpl implements CompanyService {
 		
 		return companies;
 	}
-
+	
 }

@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CRUDObject<T,I> {
@@ -25,8 +27,25 @@ public interface CRUDObject<T,I> {
 		);
 	}
 	
+	default T removeId(T object) {
+		if (object instanceof NumericId) {
+			NumericId objectNumericId = (NumericId) object;
+			if (objectNumericId.getId() > 0) {
+				objectNumericId.setId(0);
+			}
+			
+		} else if (object instanceof CompositeId) {
+			boolean exists = existsById( ((CompositeId<I>) object).getId() );
+			if (exists) {
+				object = null;
+			}
+		}
+		
+		return object;
+	}
+	
 	default T create(T object) {
-		return getRepo().saveAndFlush(object);
+		return getRepo().saveAndFlush(removeId(object));
 	}
 	
 	default T update(I id, T object) {
@@ -96,4 +115,5 @@ public interface CRUDObject<T,I> {
 		
 		return exists;
 	}
+	
 }

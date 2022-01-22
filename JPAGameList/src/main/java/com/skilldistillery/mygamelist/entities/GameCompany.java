@@ -7,13 +7,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.skilldistillery.mygamelist.CompositeId;
 import com.skilldistillery.mygamelist.SpringUpdate;
 import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 
 @Entity
 @IdClass(GameCompanyId.class)
 @Table(name="game_company")
-public class GameCompany {
+public class GameCompany implements CompositeId<GameCompanyId> {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="game_id")
@@ -32,6 +33,15 @@ public class GameCompany {
 		Constructors
 	---------------------------------------------------------------------------- */
 	public GameCompany() {}
+	
+
+	/* ----------------------------------------------------------------------------
+		Get GameCompanyId
+	---------------------------------------------------------------------------- */
+	@Override
+	public GameCompanyId getId() {
+		return new GameCompanyId(game,company);
+	}
 	
 	
 	/* ----------------------------------------------------------------------------
@@ -74,4 +84,5 @@ public class GameCompany {
 	public String toString() {
 		return "GameCompany [game=" + game + ", company=" + company + ", role=" + role + "]";
 	}
+
 }
