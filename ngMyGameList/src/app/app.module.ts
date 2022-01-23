@@ -8,11 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { GameService } from './services/game.service';
 import { GamecommentService } from './services/gamecomment.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TagService } from './services/tag.service';
+import { GamesComponent } from './components/games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
     GameService,
-    GamecommentService
+    GamecommentService,
+    TagService
   ],
   bootstrap: [AppComponent]
 })

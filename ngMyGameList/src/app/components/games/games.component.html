@@ -1,0 +1,50 @@
+<div>
+  <div class="form-floating">
+    <input type="text" class="form-control" id="titleInput" placeholder="Title">
+    <label for="titleInput">Title</label>
+  </div>
+  <div class="form-floating">
+    <textarea type="text" class="form-control" id="descriptionInput" placeholder="Description"></textarea>
+    <label for="descriptionInput">Description</label>
+  </div>
+  <br>
+  <button class="btn btn-primary">Add Game</button>
+</div>
+
+<div>
+  <br>
+  <table *ngIf="!selectedGame" class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of games">
+        <td>
+          <img [src]="game.imageURL"/>
+        </td>
+        <td>{{game.id}}</td>
+        <td>{{game.title}}</td>
+        <td>{{game.description}}</td>
+        <td class="overflow-hidden">
+          <div ngbDropdown container="body">
+            <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Actions</button>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem>Edit</button>
+              <button ngbDropdownItem>Duplicate</button>
+              <button ngbDropdownItem>Move</button>
+              <div class="dropdown-divider"></div>
+              <button ngbDropdownItem>Delete</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
