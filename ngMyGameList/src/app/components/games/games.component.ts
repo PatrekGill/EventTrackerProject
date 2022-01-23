@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Game } from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
 import { GamecommentService } from 'src/app/services/gamecomment.service';
@@ -14,10 +15,12 @@ export class GamesComponent implements OnInit {
   selectedGame: Game | null;
   editedGame: Game | null;
   newGame: Game;
+  closeResult: string | undefined;
 
   constructor(
     private gameSvc: GameService,
-    private gameCommentSvc: GamecommentService
+    private gameCommentSvc: GamecommentService,
+    private modalService: NgbModal
   ) {
     this.selectedGame = null;
     this.editedGame = null;
@@ -37,8 +40,9 @@ export class GamesComponent implements OnInit {
     );
   }
 
-  initEditGame() {
-    this.editedGame = Object.assign({}, this.selectedGame);
+  openVerticallyCentered(content: any, game: Game) {
+    this.editedGame = Object.assign({}, game);
+    this.modalService.open(content, { centered: true, size: "lg" });
   }
 
   createGame(game: Game) {
