@@ -74,4 +74,18 @@ export class GamesComponent implements OnInit {
       }
     )
   }
+
+  deleteGame(game: Game) {
+    this.gameSvc.delete(game.id).subscribe(
+      {
+        next: updated => {
+          this.loadGamesArray();
+        },
+        error: fail => {
+          console.log("Failed to delete game: " + fail.error);
+
+        }
+      }
+    )
+  }
 }
