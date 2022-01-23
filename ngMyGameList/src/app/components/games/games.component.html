@@ -58,13 +58,17 @@
       <div class="card container card-container">
         <div class="row">
           <div class="col-md-5 card-image-div">
-            <img [src]="game.imageURL" class="card-img-top img-fluid rounded-start card-image"/>
+            <img [src]="game.imageURL" class="card-img-top img-fluid card-image"/>
           </div>
-          <div class="col-md-7 card-text-div">
-            <div class="card-body">
-              <a href="" class="card-title">{{game.title}}</a>
-              <p class="card-text">{{game.description}}</p>
+
+          <div class="col-md-7 card-text-column">
+            <div class="card-text-div">
+              {{game.description}}
+
             </div>
+              <!-- <div class="card-title-div">
+                <a href="" class="card-title">{{game.title}}</a>
+              </div> -->
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 .chart-contianer {
   max-width: 1500px;
+  padding: 20px;
 }
 
 .card-container {
@@ -18,6 +19,21 @@
   padding-right: 0%;
 }
 
-.card-text-div {
-  padding-left: 0%;
+.card-title-div {
+  max-height: 20px;
 }
+.card-text-column {
+  padding-left: 2%;
+}
+.card-text-div {
+  max-height: 200px;
+  padding-right: 2%;
+  font-size: small;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.card-text-div::-webkit-scrollbar {
+  display: none;
+}
+
