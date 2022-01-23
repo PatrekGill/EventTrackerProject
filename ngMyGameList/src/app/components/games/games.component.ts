@@ -3,6 +3,7 @@ import { Game } from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
 import { GamecommentService } from 'src/app/services/gamecomment.service';
 
+
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
