@@ -12,6 +12,7 @@ import { GamecommentService } from 'src/app/services/gamecomment.service';
 export class GamesComponent implements OnInit {
   games: Game[] = [];
   selectedGame: Game | null;
+  editedGame: Game | null;
   newGame: Game;
 
   constructor(
@@ -19,6 +20,7 @@ export class GamesComponent implements OnInit {
     private gameCommentSvc: GamecommentService
   ) {
     this.selectedGame = null;
+    this.editedGame = null;
     this.newGame = new Game();
   }
 
@@ -33,6 +35,10 @@ export class GamesComponent implements OnInit {
         error: err => console.error("loadGamesArray() -> Observer got an error: " + err)
       }
     );
+  }
+
+  initEditGame() {
+    this.editedGame = Object.assign({}, this.selectedGame);
   }
 
   createGame(game: Game) {
