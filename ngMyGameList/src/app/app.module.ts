@@ -10,6 +10,7 @@ import { GamecommentService } from './services/gamecomment.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagService } from './services/tag.service';
 import { GamesComponent } from './components/games/games.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { GamesComponent } from './components/games/games.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [

@@ -11,12 +11,14 @@ import { GamecommentService } from 'src/app/services/gamecomment.service';
 export class GamesComponent implements OnInit {
   games: Game[] = [];
   selectedGame: Game | null;
+  newGame: Game;
 
   constructor(
     private gameSvc: GameService,
     private gameCommentSvc: GamecommentService
   ) {
     this.selectedGame = null;
+    this.newGame = new Game();
   }
 
   ngOnInit(): void {
@@ -30,5 +32,20 @@ export class GamesComponent implements OnInit {
         error: err => console.error("loadGamesArray() -> Observer got an error: " + err)
       }
     );
+  }
+
+  createGame(game: Game) {
+    this.gameSvc.create(game).subscribe(
+      {
+        next: created => {
+          this.newGame = new Game();
+          this.loadGamesArray();
+        },
+        error: fail => {
+          console.log("Failed to creeate game: " + fail.error);
+
+        }
+      }
+    )
   }
 }
