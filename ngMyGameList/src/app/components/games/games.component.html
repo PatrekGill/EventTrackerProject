@@ -57,18 +57,17 @@
     <div *ngFor="let game of games" class="col">
       <div class="card container card-container">
         <div class="row">
-          <div class="col-md-5 card-image-div">
-            <img [src]="game.imageURL" class="card-img-top img-fluid card-image"/>
+          <div class="col-md-5 cover-div">
+            <img [src]="game.imageURL" class="card-image"/>
+            <div class="title-overlay">
+              <a href="" class="card-title">{{game.title}}</a>
+            </div>
           </div>
 
           <div class="col-md-7 card-text-column">
             <div class="card-text-div">
               {{game.description}}
-
             </div>
-              <!-- <div class="card-title-div">
-                <a href="" class="card-title">{{game.title}}</a>
-              </div> -->
           </div>
         </div>
 
