@@ -53,7 +53,22 @@ export class GamesComponent implements OnInit {
           this.loadGamesArray();
         },
         error: fail => {
-          console.log("Failed to creeate game: " + fail.error);
+          console.log("Failed to create game: " + fail.error);
+
+        }
+      }
+    )
+  }
+
+  updateGame(game: Game) {
+    this.gameSvc.update(game).subscribe(
+      {
+        next: updated => {
+          this.editedGame = null;
+          this.loadGamesArray();
+        },
+        error: fail => {
+          console.log("Failed to update game: " + fail.error);
 
         }
       }
