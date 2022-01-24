@@ -1,6 +1,5 @@
 .chart-contianer {
   max-width: 1500px;
-  padding: 20px;
 }
 
 .card-container {
@@ -8,7 +7,10 @@
   border: 0px;
   padding: 0%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  min-width: 300px;
   max-width: 370px;
+  min-height: 200px;
+  max-height: 248px;
 }
 
 .card-image {
@@ -18,8 +20,8 @@
 
 .cover-div {
   position: relative;
+  overflow-x: hidden;
   padding-right: 0%;
-  max-width: 170px;
   height: 200px;
   max-height: 200px;
 }
@@ -48,15 +50,19 @@
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   color: #f1f1f1;
-  max-width: 134.25px;
-  width: 100%;
+  width:100%;
   transition: .5s ease;
   opacity:1;
   color: white;
   font-size: small;
   font-weight: bold;
-  padding: 2%;
-  text-align: center;
+  padding-left: 5%;
+  padding-top: 0%;
+  padding-bottom: 2%;
+  padding-right: 10%;
+  max-height: 50%;
+  overflow-y: scroll;
+  text-align: left;
 }
 .title-overlay a {
   color:white;

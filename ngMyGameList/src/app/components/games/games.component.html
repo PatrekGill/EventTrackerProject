@@ -85,16 +85,16 @@
 <div class="container chart-contianer">
   <div class="row row-cols-1 row-cols-sm-1 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 g-5">
     <div *ngFor="let game of games" class="col">
-      <div class="card container card-container">
+      <div class="card card-container container">
         <div class="row">
-          <div class="col-md-5 cover-div">
+          <div class="col-5 cover-div">
             <img [src]="game.imageURL" class="card-image"/>
-            <div class="title-overlay">
+            <div class="col-5 title-overlay">
               <a href="" class="card-title">{{game.title}}</a>
             </div>
           </div>
 
-          <div class="col-md-7 card-text-column">
+          <div class="col-7 card-text-column">
             <div class="card-text-div">
               {{game.description}}
             </div>
