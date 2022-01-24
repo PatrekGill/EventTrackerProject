@@ -68,6 +68,7 @@ Angular 2, Angular CLI, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Sui
 It would've helped me greatly to have started on smaller object to fully-implement CRUD operations as a template, rather then spending my time with completing so much of the relationships with the main table `Game`.
 <br>
 <br>
+
 - A Plan With Angular:
 <br>
 While this is a brand-new technology I am still learning and tinkering with, I would say that from the onset it is important to have an idea of all the pieces to a page that are desired. I'm finding that I prefer to almost start from scratch after prototyping a page and build it from the top down.
