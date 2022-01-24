@@ -29,6 +29,7 @@
 </ng-template>
 
 
+
 <div *ngIf="!selectedGame">
   <div>
     <div class="form-floating">
@@ -81,9 +82,15 @@
   </table> -->
 </div>
 
+
 <div class="container chart-contianer">
+  <button (click)="gameOrdering='id'" class="btn btn-secondary">Sort By Id</button>
+  <button (click)="gameOrdering='title'" class="btn btn-secondary">Sort By Title</button>
+  <br/>
+  <br/>
+
   <div class="row row-cols-1 row-cols-sm-1 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 g-5">
-    <div *ngFor="let game of games" class="col">
+    <div *ngFor="let game of games | orderby:gameOrdering"  class="col">
       <div class="card card-container container">
         <div class="row">
           <div class="col-5 cover-div">

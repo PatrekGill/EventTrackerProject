@@ -11,7 +11,7 @@ The backend is currently not fully implemented, mostly as it relates to data mod
 The only current full CRUD operations are available on `Game` and `GameComment`. POST methods create, PUT update, GETs retrieve, and DELETE will delete. The reference sheet below includes currently available mappings, with more to come. Theses were tested using manual Postman calls locally.
 
 ### Angular Front End
-There is a basic implementation of an Angular 2 front-end that is hooked to the backend. Currently, you can create, update, and delete games from the list.  
+There is a basic implementation of an Angular front-end that is hooked to the backend. Currently, you can create, update, and delete games from the list.  
 
 
 ## REST API Reference
@@ -56,7 +56,7 @@ There is a basic implementation of an Angular 2 front-end that is hooked to the 
 | Status             | GET         | /api/status/{id}                               |                                                 | Retrieve                                             |
 
 ## Technologies Used
-Angular 2, Angular CLI, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postman, Java 8, Gradle, JUnit 5, MAMP, SQL (MySQL), Git terminal, MAC OS, MySQL Workbench
+Angular, Angular CLI, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postman, Java 8, Gradle, JUnit 5, MAMP, SQL (MySQL), Git terminal, MAC OS, MySQL Workbench
 
 ## Things That Can Be Done Better (at the moment)
 - Consistency in URI with regards to capitalization

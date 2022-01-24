@@ -16,6 +16,7 @@ export class GamesComponent implements OnInit {
   editedGame: Game | null;
   newGame: Game;
   closeResult: string | undefined;
+  gameOrdering: string;
 
   constructor(
     private gameSvc: GameService,
@@ -25,6 +26,7 @@ export class GamesComponent implements OnInit {
     this.selectedGame = null;
     this.editedGame = null;
     this.newGame = new Game();
+    this.gameOrdering = "title";
   }
 
   ngOnInit(): void {

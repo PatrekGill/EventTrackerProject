@@ -13,13 +13,15 @@ import { GamesComponent } from './components/games/games.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { OrderbyPipe } from './pipes/orderby.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GamesComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    OrderbyPipe
   ],
   imports: [
     BrowserModule,
