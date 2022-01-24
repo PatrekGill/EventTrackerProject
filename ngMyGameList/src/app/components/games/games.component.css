@@ -63,6 +63,10 @@
   max-height: 50%;
   overflow-y: scroll;
   text-align: left;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .title-overlay a {
   color:white;
@@ -72,7 +76,9 @@
   color:dodgerblue;
   text-decoration: none;
 }
-
+.title-overlay::-webkit-scrollbar {
+  display: none;
+}
 
 
 .dark-modal .modal-content {

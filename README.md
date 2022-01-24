@@ -5,14 +5,14 @@ MyGameList
 MyGameList is to be a simple game-tracker/database for videogames. At the moment, it is entirely a REST API with limited functionality mostly geared towards queries. The database schema was designed in MySQL Workbench. The entity objects are completed and have corresponding unit tests.
 <br />
 <br />
-The backend is currently not very well implemented in terms of the service objects and controllers. Some organization will be done in the future.
+The backend is currently not fully implemented, mostly as it relates to data modification (PUT, POST, DELETE). This is largely centered on the decision as to whether or not have certain properties have a disable flag or a chomprehensive deletion. Both come with challenges on such interconnected entities such as the `Game` and `UserGame`.
 
 ### REST API
 The only current full CRUD operations are available on `Game` and `GameComment`. POST methods create, PUT update, GETs retrieve, and DELETE will delete. The reference sheet below includes currently available mappings, with more to come. Theses were tested using manual Postman calls locally.
 
-### HTML/JavaScript Front End
-
 ### Angular Front End
+There is a basic implementation of an Angular 2 front-end that is hooked to the backend. Currently, you can create, update, and delete games from the list.  
+
 
 ## REST API Reference
 | Return Type        | HTTP Method | URI                                            | Request Body                                    | Purpose                                              |
@@ -56,15 +56,24 @@ The only current full CRUD operations are available on `Game` and `GameComment`.
 | Status             | GET         | /api/status/{id}                               |                                                 | Retrieve                                             |
 
 ## Technologies Used
-Spring MVC, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postman, Java 8, Gradle, JUnit 5, MAMP, SQL (MySQL), Git terminal, MAC OS, MySQL Workbench
+Angular 2, Angular CLI, Hibernate, Spring Boot, Spring Data JPA, Spring Tool Suite 4, Postman, Java 8, Gradle, JUnit 5, MAMP, SQL (MySQL), Git terminal, MAC OS, MySQL Workbench
 
 ## Things That Can Be Done Better (at the moment)
 - Consistency in URI with regards to capitalization
-- More organized service objects and controllers
+- A UI design direction
 
 ## Lessons Learned (at the moment)
-- Start smaller with service objects
+- Start smaller with service objects:
+<br>
 It would've helped me greatly to have started on smaller object to fully-implement CRUD operations as a template, rather then spending my time with completing so much of the relationships with the main table `Game`.
+<br>
+<br>
+- A Plan With Angular:
+<br>
+While this is a brand-new technology I am still learning and tinkering with, I would say that from the onset it is important to have an idea of all the pieces to a page that are desired. I'm finding that I prefer to almost start from scratch after prototyping a page and build it from the top down.
+
+## Basic Angular Front-End
+![Angular Front-End](https://drive.google.com/uc?export=view&id=16cHogyoVIYbtbXCL2xz3Cd9mAe8coU01)
 
 ## Database Schema
 ![Database Schema](https://drive.google.com/uc?export=view&id=1NkOGlh_AphY1Ze4anoymngzl9j3nBTPr)

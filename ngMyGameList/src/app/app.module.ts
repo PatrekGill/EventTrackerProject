@@ -12,12 +12,14 @@ import { TagService } from './services/tag.service';
 import { GamesComponent } from './components/games/games.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    GamesComponent
+    GamesComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
