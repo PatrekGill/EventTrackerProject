@@ -71,7 +71,7 @@ It would've helped me greatly to have started on smaller object to fully-impleme
 
 - A Plan With Angular:
 <br>
-While this is a brand-new technology I am still learning and tinkering with, I would say that from the onset it is important to have an idea of all the pieces to a page that are desired. I'm finding that I prefer to almost start from scratch after prototyping a page and build it from the top down.
+While this is a brand-new technology I am still learning and tinkering with, I would say that from the onset it is important to have an idea of all the pieces to a page that are desired. Such as where an error should show, or even just how to handle/create these on the front-end. I'm finding that I prefer to almost start from scratch after prototyping a page and build it from the top down.
 
 ## Basic Angular Front-End
 ![Angular Front-End](https://drive.google.com/uc?export=view&id=16cHogyoVIYbtbXCL2xz3Cd9mAe8coU01)
