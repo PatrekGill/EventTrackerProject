@@ -4,12 +4,14 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.skilldistillery.mygamelist.repositories.UserRepository;
+
 public interface CRUDObject<T,I> {
+	UserRepository getUserRepo();
 	JpaRepository<T, I> getRepo();
 	OptionalRetriever<T> getRetriever();
 	
@@ -18,6 +20,16 @@ public interface CRUDObject<T,I> {
 	}
 	
 	default T findById(I id) {
+		if (id == null) {
+			return null;
+		}
+		
+		return getRetriever().get(
+			getRepo().findById(id)
+		);
+	}
+	
+	default T findById(String username, I id) {
 		if (id == null) {
 			return null;
 		}
@@ -48,7 +60,7 @@ public interface CRUDObject<T,I> {
 		return getRepo().saveAndFlush(removeId(object));
 	}
 	
-	default T update(I id, T object) {
+	default T update(I id, T object, Predicate<T> canUpdate) {
 		T managed = findById(id);
 
 		if (managed != null && object != null) {
@@ -64,9 +76,15 @@ public interface CRUDObject<T,I> {
 				{
 					if (field.isAnnotationPresent(SpringUpdate.class))
 					{
-						String getterName = "get" + field.getName();
-						String setterName = "set" + field.getName();
+						String fieldName = field.getName();
+						String getterName = "get" + fieldName;
+						String setterName = "set" + fieldName;
+						
 						Method getMethod = methodMap.getOrDefault(getterName.toLowerCase(), null);
+						if (getMethod == null) {
+							getMethod = methodMap.getOrDefault(("is" + fieldName).toLowerCase(), null);
+						}
+						
 						Method setMethod = methodMap.getOrDefault(setterName.toLowerCase(), null);
 						if (getMethod != null && setMethod != null) {
 							setMethod.invoke(
@@ -90,17 +108,21 @@ public interface CRUDObject<T,I> {
 	}
 	
 	
-	default boolean deleteById(I id) {
+	default boolean deleteById(I id, Predicate<T> canDelete) {
 		boolean deleted = false;
-		if (id != null && existsById(id)) {
-			try {
-				getRepo().deleteById(id);
-				if (!existsById(id)) {
-					deleted = true;
+		if (id != null) {
+			T entity = findById(id);
+			if (canDelete.test(entity)) {
+				try {
+					getRepo().deleteById(id);
+					if (!existsById(id)) {
+						deleted = true;
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 				
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 		
