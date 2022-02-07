@@ -57,7 +57,7 @@ public class GameRelationModifyController {
 				relation.getPrimaryGame(),
 				relation.getOtherGame()
 			);
-			relation = relationService.update(id, relation);
+			relation = relationService.update(id, relation, gr -> true);
 			res.setStatus(201);
 			
 			
@@ -83,7 +83,7 @@ public class GameRelationModifyController {
 	) {
 		GameRelationId id = new GameRelationId(primaryGameId,otherGameId);
 		if (relationService.existsById(id)) {
-			if (relationService.deleteById(id)) {
+			if (relationService.deleteById(id, gr -> true)) {
 				res.setStatus(204);
 				
 			} else {

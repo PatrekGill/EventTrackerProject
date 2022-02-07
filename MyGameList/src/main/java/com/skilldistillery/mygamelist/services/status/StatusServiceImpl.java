@@ -24,4 +24,5 @@ public class StatusServiceImpl implements StatusService {
 		return retriever;
 	}
 	
+	
 }

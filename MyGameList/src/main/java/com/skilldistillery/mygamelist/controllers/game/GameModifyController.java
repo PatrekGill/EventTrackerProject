@@ -62,7 +62,7 @@ public class GameModifyController {
 		HttpServletResponse res
 	) {
 		try {
-			game = gameService.update(id, game);
+			game = gameService.update(id, game, g -> true);
 			if (game == null) {
 				res.setStatus(404);
 			}
@@ -87,7 +87,7 @@ public class GameModifyController {
 		HttpServletResponse res
 	) {
 		if (gameService.existsById(id)) {
-			if (gameService.deleteById(id)) {
+			if (gameService.deleteById(id, g -> true)) {
 				res.setStatus(204);
 				
 			} else {

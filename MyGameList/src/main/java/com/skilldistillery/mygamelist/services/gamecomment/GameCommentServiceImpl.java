@@ -1,6 +1,7 @@
 package com.skilldistillery.mygamelist.services.gamecomment;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -37,7 +38,7 @@ public class GameCommentServiceImpl implements GameCommentService {
 	}
 	
 	@Override
-	public boolean deleteById(Integer id) {
+	public boolean deleteById(Integer id, Predicate<GameComment> canDeletePredicate) {
 		boolean deleted = false;
 		if (existsById(id)) {
 			GameComment comment = findById(id);
@@ -48,7 +49,6 @@ public class GameCommentServiceImpl implements GameCommentService {
 				for (int i = 0; i < replies.size(); i++) {
 					replies.get(i).setVisible(false);
 				}
-				
 			}
 			
 			deleted = true;

@@ -61,7 +61,7 @@ public class CompanyModifyController {
 		HttpServletResponse res
 	) {
 		try {
-			company = companyService.update(id, company);
+			company = companyService.update(id, company, c -> true);
 			if (company == null) {
 				res.setStatus(404);
 			}

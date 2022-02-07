@@ -62,7 +62,7 @@ public class GameCommentModifyController {
 		HttpServletResponse res
 	) {
 		try {
-			comment = commentService.update(id, comment);
+			comment = commentService.update(id, comment, gc -> true);
 			if (comment == null) {
 				res.setStatus(404);
 			}
@@ -127,7 +127,7 @@ public class GameCommentModifyController {
 		HttpServletResponse res
 	) {
 		if (commentService.existsById(id)) {
-			if (commentService.deleteById(id)) {
+			if (commentService.deleteById(id, gc -> true)) {
 				res.setStatus(204);
 				
 			} else {

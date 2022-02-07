@@ -58,7 +58,7 @@ public class GameReleaseModifyController {
 				release.getGame(),
 				release.getPlatform()
 			);
-			release = releaseService.update(id, release);
+			release = releaseService.update(id, release, gr -> true);
 			res.setStatus(201);
 			
 		} catch (Exception e) {
@@ -83,7 +83,7 @@ public class GameReleaseModifyController {
 	) {
 		GameReleaseId id = new GameReleaseId(gameId,platformId);
 		if (releaseService.existsById(id)) {
-			if (releaseService.deleteById(id)) {
+			if (releaseService.deleteById(id, gr -> true)) {
 				res.setStatus(204);
 				
 			} else {

@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.skilldistillery.mygamelist.CompositeId;
 import com.skilldistillery.mygamelist.SpringUpdate;
-import com.skilldistillery.mygamelist.compositeids.GameCompanyId;
 import com.skilldistillery.mygamelist.compositeids.GameRelationId;
 
 @Entity

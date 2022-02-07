@@ -11,10 +11,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.skilldistillery.mygamelist.repositories.UserRepository;
 
 public interface CRUDObject<T,I> {
-	UserRepository getUserRepo();
+	public static final HashMap<Class<?>, HashMap<String, Method>> classMethodMap = new HashMap<>();
 	JpaRepository<T, I> getRepo();
 	OptionalRetriever<T> getRetriever();
-	
+
 	default List<T> findAll() {
 		return getRepo().findAll();
 	}
@@ -66,10 +66,19 @@ public interface CRUDObject<T,I> {
 		if (managed != null && object != null) {
 			try {
 				Class<?> typeClass = object.getClass();
-				Method[] methods = typeClass.getDeclaredMethods();
-				HashMap<String, Method> methodMap = new HashMap<>();
-				for (Method method : methods) {
-					methodMap.put(method.getName().toLowerCase(),method);
+				HashMap<String, Method> methodMap;
+				if (classMethodMap.containsKey(typeClass)) {
+					methodMap = classMethodMap.get(typeClass);
+					
+				} else {
+					Method[] methods = typeClass.getDeclaredMethods();
+					methodMap = new HashMap<>();
+					for (Method method : methods) {
+						methodMap.put(method.getName().toLowerCase(),method);
+					}
+					// cache method map
+					classMethodMap.put(typeClass, methodMap);
+					
 				}
 				
 				for(Field field : object.getClass().getDeclaredFields())
