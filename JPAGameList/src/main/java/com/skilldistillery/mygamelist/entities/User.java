@@ -41,6 +41,7 @@ public class User implements NumericId {
     @OneToMany(mappedBy = "user")
     private List<UserGame> gamesOnList;
     
+    @JsonIgnore
     @SpringUpdate
 	private String password;
     @SpringUpdate
