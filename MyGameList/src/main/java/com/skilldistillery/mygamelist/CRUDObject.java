@@ -8,8 +8,6 @@ import java.util.function.Predicate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skilldistillery.mygamelist.repositories.UserRepository;
-
 public interface CRUDObject<T,I> {
 	public static final HashMap<Class<?>, HashMap<String, Method>> classMethodMap = new HashMap<>();
 	JpaRepository<T, I> getRepo();
@@ -29,14 +27,20 @@ public interface CRUDObject<T,I> {
 		);
 	}
 	
-	default T findById(String username, I id) {
+	default T findById(I id, Predicate<T> canLookUp) {
 		if (id == null) {
 			return null;
 		}
 		
-		return getRetriever().get(
+		T entity = getRetriever().get(
 			getRepo().findById(id)
 		);
+		
+		if (!canLookUp.test(entity)) {
+			entity = null;
+		}
+		
+		return entity;
 	}
 	
 	default T removeId(T object) {

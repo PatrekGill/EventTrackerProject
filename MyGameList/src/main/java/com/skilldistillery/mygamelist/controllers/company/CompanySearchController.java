@@ -23,11 +23,8 @@ public class CompanySearchController {
 	/* ----------------------------------------------------------------------------
 		GET  companies by name
 	---------------------------------------------------------------------------- */
-	@GetMapping(path = {
-		"companies/search/{name}/{numberOfEntries}",
-		"companies/search/{name}"
-	})
-	public List<Company> getCompaniesByName(
+	@GetMapping("companies/search/{name}/{numberOfEntries}")
+	public List<Company> getCompaniesByNameLimited(
 		@PathVariable String name,
 		@PathVariable Integer numberOfEntries,
 		HttpServletResponse res
@@ -57,4 +54,25 @@ public class CompanySearchController {
 		
 		return companies;
 	}
+	
+	@GetMapping("companies/search/{name}")
+	public List<Company> getCompaniesByName(
+			@PathVariable String name,
+			HttpServletResponse res
+		) {
+			List<Company> companies = new ArrayList<>();
+			try {
+				companies = companyService.findByNameLike(name);
+				if (companies == null) {
+					res.setStatus(400);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				res.setStatus(400);
+				
+			}
+			
+			return companies;
+		}
 }

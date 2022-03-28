@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         
+        
         // user
         .antMatchers(HttpMethod.GET,"/api/users").permitAll()
         .antMatchers(HttpMethod.GET,"/api/users/**").permitAll()
@@ -38,9 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.PUT,"/api/users/**").authenticated()
         .antMatchers(HttpMethod.POST,"/api/users").authenticated()
         
-        .antMatchers("/api/problem/**").permitAll()
+        .antMatchers("/api/companies").permitAll()
+        .antMatchers("/api/games").permitAll()
         
-        .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
+//        .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authorization.
         .and()
         .httpBasic();                           // Use HTTP Basic Authentication
