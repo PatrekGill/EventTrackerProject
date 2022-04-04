@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
     Button,
     Modal,
@@ -12,55 +12,46 @@ import classes from "./GameModal.module.css";
 
 const GameModal = (props) => {
     const urlCtx = useContext(UrlContext);
-	const [addingNewGame,setAddingNewGame] = useState();
-
+	
+	
     const floatingFormClass = "form-floating";
     const textFieldClass = `${floatingFormClass} ${classes.textField}`;
     const textAreaClass = `form-control ${classes.textAreaField}`;
-
+	
     let gameTitle,
-        gameDescription,
-        gameImage = "";
-
-	const editGame = props.game;
-    if (editGame) {
-		// setAddingNewGame(false);
-		gameTitle = editGame.title;
-		gameDescription = editGame.description;
-		gameImage = editGame.imageURL;
-
-    } else {
-		// setAddingNewGame(true);
-	}
-
-    const titleRef = useRef(gameTitle);
-    const descriptionRef = useRef(gameDescription);
-    const imageRef = useRef(gameImage);
-
-    const resetRefs = () => {
-        titleRef.current.value = "";
-        descriptionRef.current.value = "";
-        imageRef.current.value = "";
-    };
+	gameDescription,
+	gameImage = "";
+	const gameBeingEdited = props.game;
+    if (gameBeingEdited) {
+		gameTitle = gameBeingEdited.title;
+		gameDescription = gameBeingEdited.description;
+		gameImage = gameBeingEdited.imageURL;
+		
+    }
+	const [editGameTitle,setEditGameTitle] = useState(gameTitle);
+	const [editGameDescription,setEditGameDescription] = useState(gameDescription);
+	const [editGameImage,setEditGameImage] = useState(gameImage);
 
     const [error, setError] = useState(null);
-
     const submitGameHandler = async () => {
         setError(null);
 
         const game = {
-            title: titleRef.current.value,
-            description: descriptionRef.current.value,
-            imageURL: imageRef.current.value,
+            title: editGameTitle,
+            description: editGameDescription,
+            imageURL: editGameImage,
         };
 
-		let method = "PUT";
-		if (addingNewGame) {
-			method = "POST";
+		let method = "POST";
+		let url = urlCtx.gameApiBaseURL;
+		if (gameBeingEdited) {
+			url = url + gameBeingEdited.id;
+			method = "PUT";
 		}
 
+
         try {
-            const response = await fetch(urlCtx.gameApiBaseURL, {
+            const response = await fetch(url, {
                 method: method,
                 body: JSON.stringify(game),
                 headers: {
@@ -74,7 +65,6 @@ const GameModal = (props) => {
             }
 
             props.onEditGame();
-            resetRefs();
         } catch (error) {
             setError(error.message);
         }
@@ -82,9 +72,18 @@ const GameModal = (props) => {
 
 	
     const closeHandler = () => {
-        resetRefs();
         props.onClose();
     };
+
+	const changeTitleHandler = (event) => {
+		setEditGameTitle(event.target.value);
+	};
+	const changeDescriptionHandler = (event) => {
+		setEditGameDescription(event.target.value);
+	};
+	const changeImageHandler = (event) => {
+		setEditGameImage(event.target.value);
+	};
 
     return (
         <Modal size="lg" show={true}>
@@ -95,7 +94,8 @@ const GameModal = (props) => {
                         className="form-control"
                         id="titleEdit"
                         placeholder="Title"
-                        ref={titleRef}
+						onChange={changeTitleHandler}
+						value={editGameTitle}
                     />
                     <label htmlFor="titleEdit">Title</label>
                 </div>
@@ -110,8 +110,9 @@ const GameModal = (props) => {
                         style={{ height: "100%" }} // show the 5 rows initially
                         id="descriptionEdit"
                         placeholder="Description"
-                        ref={descriptionRef}
-                    ></textarea>
+						onChange={changeDescriptionHandler}
+						value={editGameDescription}
+                    />
                     <label htmlFor="descriptionEdit">Description</label>
                 </div>
                 <br />
@@ -121,7 +122,8 @@ const GameModal = (props) => {
                         className="form-control"
                         id="imageEdit"
                         placeholder="URL"
-                        ref={imageRef}
+						onChange={changeImageHandler}
+						value={editGameImage}
                     />
                     <label htmlFor="imageEdit">Image URL</label>
                 </div>
@@ -130,7 +132,7 @@ const GameModal = (props) => {
             <ModalFooter style={{ display: "block" }}>
 				<Button onClick={submitGameHandler}>
 					{
-						addingNewGame ? "Add Game" : "Update Game"
+						gameBeingEdited ? "Update Game" : "Add Game"
 					}
 				</Button>
 
