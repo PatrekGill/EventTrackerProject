@@ -1,9 +1,9 @@
 import "./App.css";
-import AllGames from "./components/games/AllGames";
+import GameList from "./components/games/GameList";
 
 function App() {
     return (
-		<AllGames></AllGames>
+		<GameList/>
     );
 }
 

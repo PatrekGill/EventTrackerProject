@@ -1,12 +1,10 @@
-.container {
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
 .card-container {
     overflow: hidden;
-    border: 0px;
-    padding: 0%;
+    border-right: 0px !important;
+	border-top: 0px !important;
+	border-left: 0px !important;
+	border-bottom: 0px !important;
+    padding: 0px 0px 0px 0px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     min-width: 300px;
     max-width: 370px;
@@ -22,7 +20,7 @@
 .cover-div {
     position: relative;
     overflow-x: hidden; 
-    padding-right: 0%;
+    padding-right: 0px !important;
     height: 200px;
     max-height: 200px;
 }
