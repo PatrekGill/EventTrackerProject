@@ -4,12 +4,16 @@ const AllGames = (props) => {
     const editingGameHandler = (game) => {
 		props.editingGame(game);
 	};
+	const deleteGameHandler = (game) => {
+		props.deleteGame(game);
+	};
 	
 	const gamesList = props.games.map((game) => (
         <Game 
 			key={game.id} 
 			game={game} 
 			editingGame={editingGameHandler}
+			deleteGame={deleteGameHandler}
 		/>
     ));
 

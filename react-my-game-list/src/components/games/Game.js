@@ -6,6 +6,10 @@ const Game = (props) => {
 	const editingGameHandler = () => {
 		props.editingGame(game);
 	};
+
+	const deleteGameHandler = () => {
+		props.deleteGame(game);
+	};
 	
     return (
         <div className="col">
@@ -28,7 +32,7 @@ const Game = (props) => {
                 <div className="card-footer">
                     <button className="btn btn-primary btn-sm" onClick={editingGameHandler}>Edit</button>
                     <span className={classes["card-delete"]}>
-                        <button className="btn btn-danger btn-sm">Delete</button>
+                        <button className="btn btn-danger btn-sm" onClick={deleteGameHandler}>Delete</button>
                     </span>
                 </div>
             </div>

@@ -56,7 +56,27 @@ const GameList = () => {
     };
     const editingGameHandler = (game) => {
         setEditGame(game);
-		setEditingGame(true);
+        setEditingGame(true);
+    };
+
+    const deleteGameHandler = async (game) => {
+        const id = game.id;
+
+        try {
+            const url = urlCtx.gameApiBaseURL + id;
+            const response = await fetch(url, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) {
+                console.log(response);
+                throw new Error("An error occurred while deleting the game...");
+            }
+
+			fetchGamesHandler();
+        } catch (error) {
+            setError(error.message);
+        }
     };
 
     return (
@@ -65,7 +85,11 @@ const GameList = () => {
 
             {isLoading && <p>Loading...</p>}
             {!isLoading && !error && (
-                <AllGames games={games} editingGame={editingGameHandler} />
+                <AllGames
+                    games={games}
+                    editingGame={editingGameHandler}
+                    deleteGame={deleteGameHandler}
+                />
             )}
             {error && <p>{error}</p>}
 
