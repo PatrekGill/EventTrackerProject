@@ -21,7 +21,7 @@ import { OrderbyPipe } from './pipes/orderby.pipe';
     HomeComponent,
     GamesComponent,
     NotfoundComponent,
-    OrderbyPipe
+    OrderbyPipe,
   ],
   imports: [
     BrowserModule,

@@ -42,8 +42,5 @@ public class GameServiceImpl implements GameService {
 	public List<Game> findByTitleLike(String keyword) {
 		return gameRepo.findByTitleLike("%" + keyword + "%");
 	}
-
-
-	
 	
 }

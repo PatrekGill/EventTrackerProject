@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/games')
+    // this.router.navigateByUrl('/games')
   }
 
 }

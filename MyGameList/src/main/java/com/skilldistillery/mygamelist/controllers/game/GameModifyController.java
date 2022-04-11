@@ -34,6 +34,11 @@ public class GameModifyController {
 	) {
 		
 		try {
+			if (game.getTitle().equals("")) {
+				System.err.println("Tried to create game without title");
+				throw new Exception();
+			}
+			
 			game = gameService.create(game);
 			res.setStatus(201);
 			
@@ -45,6 +50,7 @@ public class GameModifyController {
 			e.printStackTrace();
 			System.err.println("Invalid game sent to create");
 			res.setStatus(400);
+
 			game = null;
 			
 		}
